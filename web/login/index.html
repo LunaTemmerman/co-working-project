@@ -32,11 +32,31 @@
             front-size:90%;
             text-underline: blue;
         }
+        a.d{
+            color: black;
+            font-family: Dubai;
+            font-size: 200%;
+            margin-left: 50px;
+        }
+        ul#horizontal-list {
+            min-width: 1200px;
+            list-style: none;
+            background: lightslategray;
+        }
+        ul#horizontal-list li {
+            display: inline;
+        }
     </style>
 </head>
 <body>
-<<<<<<< HEAD:AccountPages/login.html
 <header>
+    <ul id="horizontal-list">
+        <li><a href="../"><img width="100" src="../img/logo.png" alt="logo"></a></li>
+        <li><a class=d href="#home">Home</a></li>
+        <li><a class=d href="../login">Login</a></li>
+        <li><a class=d href="../signup">Registreer</a></li>
+        <li><a class=d href="../film"><button type="submit">Zoek 🔎︎</button></a></li>
+    </ul>
 </header>
 <main>
     <h1>log in in uw "naam website" account</h1>
@@ -45,16 +65,7 @@
         <p class=a>Naam:<br><input type="text" naam=""></p>
         <p class=a>Wachtwoord:<br><input type="text" ww=""></p>
     </form>
-    <p class=b>Heeft nog geen account? <a class=c href=signup.html>Maak dan hier een account.</a></p>
 </main>
-=======
-<h1>log in in uw "naam website" account</h1>
-<form>
-    <p class=a>Voornaam:<br><input type="text" voornaam=""></p>
-    <p class=a>Naam:<br><input type="text" naam=""></p>
-    <p class=a>Wachtwoord:<br><input type="text" ww=""></p>
-</form>
 <p class=b>Heeft nog geen account? <a class=c href="../signup">Maak dan hier een account.</a></p>
->>>>>>> a634036b263bdc97611cffabb87e165e21b6b396:web/login/index.html
 </body>
 </html>
