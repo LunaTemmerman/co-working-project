@@ -1,14 +1,14 @@
 function api() {
-	var apikey = "a1610a3d"
-	var query = document.getElementById("query").value;
-	fetch('http://www.omdbapi.com/?s=' + query + '&apikey=' + apikey)
+	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
+	var query = document.getElementById("query").value.replace(/\s/g, '+');
+	fetch('https://api.themoviedb.org/3/search/movie?api_key=' + apikey + '&query=' + query)
 	.then((response) => response.json())
 	.then((json) => display(json));
 }
 function display(json) {
-	for (let i = 0; i < json.Search.length; i++) {
+	for (let i = 0; i < json.results.length; i++) {
 		const element = document.getElementById("films");
-		var film = (`<section id="${json.Search[i].imdbID}"><h1><a href="./film/?i=${json.Search[i].imdbID}">${json.Search[i].Title}</a></h1><p>${json.Search[i].Year}</p><img src="${json.Search[i].Poster}" width="200" alt="Poster"></img></section>`);
+		var film = (`<section id="${json.results[i].id}"><h1><a href="./film/?id=${json.results[i].id}">${json.results[i].title}</a></h1><p>${json.results[i].release_date}</p><img src="https://image.tmdb.org/t/p/w200${json.results[i].poster_path}" alt="Poster"></img></section>`);
 		element.insertAdjacentHTML('beforeend', film);
 	}
 }

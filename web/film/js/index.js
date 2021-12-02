@@ -1,18 +1,23 @@
 function api() {
-	var apikey = "a1610a3d"
+	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
 
 	let params = new URLSearchParams(location.search);
-	idIMDB = params.get('i')
-	fetch('http://www.omdbapi.com/?i=' + idIMDB + '&apikey=' + apikey)
+	id = params.get('id')
+	fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + apikey)
 	.then((response) => response.json())
 	.then((json) => display(json));
 }
 function display(json) {
-	document.getElementById("Title").innerHTML = json.Title
-	document.getElementById("Year").innerHTML = json.Year
-	document.getElementById("Poster").src = json.Poster
+	var genres = ""
+
+	document.getElementById("Title").innerHTML = json.title
+	document.getElementById("Year").innerHTML = json.release_date.slice(0, 4)
+	document.getElementById("Poster").src = "https://image.tmdb.org/t/p/w500" + json.poster_path
 	document.getElementById("Poster").style.display = "block";
-	document.getElementById("Genre").innerHTML = json.Genre
-	document.getElementById("Runtime").innerHTML = json.Runtime
-	document.getElementById("Plot").innerHTML = json.Plot
+	for (const genre_nr in json.genres) {
+		genres = genres + json.genres[genre_nr].name + ", "
+	}
+	document.getElementById("Genre").innerHTML = genres.slice(0, -2)
+	document.getElementById("Runtime").innerHTML = json.runtime + " min."
+	document.getElementById("Plot").innerHTML = json.overview
 }
