@@ -20,4 +20,5 @@ function display(json) {
 	document.getElementById("Genre").innerHTML = genres.slice(0, -2)
 	document.getElementById("Runtime").innerHTML = json.runtime + " min."
 	document.getElementById("Plot").innerHTML = json.overview
+	document.getElementById("Rating").innerHTML = "★ " + json.vote_average + "/10"
 }
