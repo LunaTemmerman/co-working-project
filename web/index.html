@@ -7,7 +7,7 @@
 	<script src="./js/index.js"></script>
 	<title>Home</title>
 </head>
-<body>
+<body onload="populair()">
 	<header>
 		<p><a href="./"><img width="100" src="./img/logo.png" alt="logo"></a></p>
 		<h1>Film reviews</h1>
@@ -19,11 +19,17 @@
 		</ul>
 	</header>
 	<main>
+		<h1>Zoek naar je favoriete film</h1>
 		<form action="javascript:api()" method="post">
 			<input type="text" id="query">
 			<button type="submit">Zoek 🔎︎</button>
 		</form>
 		<section id="films">
+			<h2>Zoekresultaaten</h2>
+
+		</section>
+		<section id="populair">
+			<h2>populair</h2>
 
 		</section>
 	</main>
