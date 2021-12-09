@@ -1,6 +1,10 @@
 function api() {
 	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
-	var query = document.getElementById("query").value.replace(/\s/g, '+');
+	var query = document.getElementById("query").value;
+	if (query == "") {
+		return;
+	}
+	var query = query.replace(/\s/g, '+');
 	fetch('https://api.themoviedb.org/3/search/movie?api_key=' + apikey + '&query=' + query)
 	.then((response) => response.json())
 	.then((json) => display(json,"films"));
