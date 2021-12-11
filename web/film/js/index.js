@@ -22,3 +22,6 @@ function display(json) {
 	document.getElementById("Plot").innerHTML = json.overview
 	document.getElementById("Rating").innerHTML = "★ " + json.vote_average + "/10"
 }
+function load() {
+	api()
+}
