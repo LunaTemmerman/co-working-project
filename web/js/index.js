@@ -12,9 +12,9 @@ function api() {
 	.then((json) => display(json,"films"));
 }
 function display(json, elementId) {
+    const element = document.getElementById(elementId);
 	for (let i = 0; i < json.results.length; i++) {
-		const element = document.getElementById(elementId);
-		var film = (`<section id="${json.results[i].id}"><h1><a href="./film/?id=${json.results[i].id}">${json.results[i].title}</a></h1><p>${json.results[i].release_date.slice(0, 4)}</p><img src="https://image.tmdb.org/t/p/w200${json.results[i].poster_path}" alt="Poster"></img></section>`);
+		var film = (`<div class="col"><div class="card h-100"><img src="https://image.tmdb.org/t/p/w300${json.results[i].poster_path}" class="card-img-top" alt="Poster ${json.results[i].title}"><div class="card-body"><h5 class="card-title">${json.results[i].title}</h5><p class="card-text">${json.results[i].overview}</p><a href="./film/?id=${json.results[i].id}" class="btn btn-outline-dark">Meer info...</a></div></div></div>`);
 		element.insertAdjacentHTML('beforeend', film);
 	}
 }
