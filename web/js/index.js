@@ -13,11 +13,29 @@ function api() {
 }
 function display(json, elementId) {
     const element = document.getElementById(elementId);
+    element.innerHTML=""
 	for (let i = 0; i < json.results.length; i++) {
-		var film = (`<div class="col"><div class="card h-100"><img src="https://image.tmdb.org/t/p/w300${json.results[i].poster_path}" class="card-img-top" alt="Poster ${json.results[i].title}"><div class="card-body"><h5 class="card-title">${json.results[i].title}</h5><p class="card-text">${json.results[i].overview}</p><a href="./film/?id=${json.results[i].id}" class="btn btn-outline-dark">Meer info...</a></div></div></div>`);
+        if (json.results[i].poster_path == null) {
+            moviePoster = `https://via.placeholder.com/300x450`
+        }
+        else {
+            moviePoster = `https://image.tmdb.org/t/p/w300${json.results[i].poster_path}`
+        }
+
+		var film = (`<div class="card h-100 moviecard"><a href="./film/?id=${json.results[i].id}"><img src="${moviePoster}" class="card-img-top" alt="Poster ${json.results[i].title}"><div class="card-body"><h5 class="card-title">${json.results[i].title}</h5></div></a></div>`);
 		element.insertAdjacentHTML('beforeend', film);
 	}
+    if (elementId == "films") {
+        document.getElementById("zoek").style.display = "block"
+        document.getElementById("zoek").scrollIntoView();
+    }
 }
+
+function load() {
+    document.getElementById("zoek").style.display = "none"
+    populair()
+}
+
 function populair() {
 	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
 	fetch('https://api.themoviedb.org/3/movie/popular?api_key=' + apikey)
@@ -42,7 +60,7 @@ var fetchDetials = ["","" /*"&sort_by=revenue.asc&with_genres=horror&with_watch_
 
 //<---!rowslider arrays declaratie (inhoud)!--->
 const AANTALROWSLIDERS = 4;
-var rowSliderTitle = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+var rowSliderTitle = Array.from(Array(10), () => new ArrAANTALROWSLIDERSay());
 var rowSliderReleaseDate = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
 var rowSliderImgSrc = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
 

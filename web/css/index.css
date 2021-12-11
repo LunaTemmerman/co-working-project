@@ -1,3 +1,24 @@
 .navbar-brand {
     padding-bottom: unset;
 }
+
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.moviecard {
+    width: 18rem;
+    display: inline-block;
+    margin-left: 2rem;
+    padding: 1rem;
+}
+
+.moviecard a div {
+    overflow: clip;
+}
+
+.moviecard img:hover {
+    transition: all 500ms ease;
+    transform: scale(1.05) perspective(1px)
+}
