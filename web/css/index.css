@@ -22,3 +22,25 @@
     transition: all 500ms ease;
     transform: scale(1.05) perspective(1px)
 }
+
+.search {
+    margin: 1rem 1rem;
+}
+
+.back {
+    width: 100vw;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.backdrop {
+    width: 100%;
+   object-fit: cover;
+   opacity: 0.3;
+}
+
+.movieInfo {
+    position: relative;
+    top: -44rem;
+    left: 3rem;
+}
