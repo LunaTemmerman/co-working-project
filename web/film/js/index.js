@@ -21,6 +21,7 @@ function display(json) {
 	document.getElementById("Runtime").innerHTML = json.runtime + " min."
 	document.getElementById("Plot").innerHTML = json.overview
 	document.getElementById("Rating").innerHTML = "★ " + json.vote_average + "/10"
+	document.getElementById("Backdrop").src = "https://image.tmdb.org/t/p/original" + json.backdrop_path
 }
 function load() {
 	api()
