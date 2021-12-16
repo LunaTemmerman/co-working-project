@@ -2,6 +2,10 @@
     padding-bottom: unset;
 }
 
+ul {
+    list-style: none;
+}
+
 .scrollmenu {
     overflow: auto;
     white-space: nowrap;

@@ -55,8 +55,8 @@ function apiSlider() {
     //link genres ids "https://api.themoviedb.org/3/genre/movie/list?api_key=000cfc8a44435ac1017a805bb5b2bbac&language=en-US"
     var DISCOVER = "discover/movie";
     var DISCOVER_BEGIN_URL = "&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=";
-    var FETCHDETAILS1 = ["movie/top_rated", DISCOVER, DISCOVER ];
-    var FETCHDETAILS2 = ["&page=1", DISCOVER_BEGIN_URL + "12", DISCOVER_BEGIN_URL + "27"]
+    var FETCHDETAILS1 = ["movie/top_rated", DISCOVER, DISCOVER, DISCOVER, DISCOVER, DISCOVER, DISCOVER ];
+    var FETCHDETAILS2 = ["&page=1", DISCOVER_BEGIN_URL + "12", DISCOVER_BEGIN_URL + "27", DISCOVER_BEGIN_URL + "16", DISCOVER_BEGIN_URL + "35", DISCOVER_BEGIN_URL + "18", DISCOVER_BEGIN_URL + "53"]
     var apikey = "000cfc8a44435ac1017a805bb5b2bbac";
 
     for (i = 0; i < FETCHDETAILS1.length; i++){
