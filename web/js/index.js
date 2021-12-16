@@ -43,42 +43,47 @@ function populair() {
 	.then((json) => display(json, "populair"));
 }
 
-
+//<---!rowslider arrays declaratie (inhoud)!--->
+const AANTALROWSLIDERS = 4;
+var rowSliderTitle = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+var rowSliderReleaseDate = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+var rowSliderImgSrc = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+var rowSliderMovieId = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
 
 //<---!onload API code!--->
 function apiSlider() {
-var fetchDetials = ["","" /*"&sort_by=revenue.asc&with_genres=horror&with_watch_monetization_types=flatrat"*/];
+    //link genres ids "https://api.themoviedb.org/3/genre/movie/list?api_key=000cfc8a44435ac1017a805bb5b2bbac&language=en-US"
+    var DISCOVER = "discover/movie";
+    var DISCOVER_BEGIN_URL = "&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=";
+    var FETCHDETAILS1 = ["movie/top_rated", DISCOVER, DISCOVER ];
+    var FETCHDETAILS2 = ["&page=1", DISCOVER_BEGIN_URL + "12", DISCOVER_BEGIN_URL + "27"]
     var apikey = "000cfc8a44435ac1017a805bb5b2bbac";
 
-    for (i = 0; i < fetchDetials.length; i++){
-        fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=' + apikey + '&language=en-US&page=1' + fetchDetials)
+    for (i = 0; i < FETCHDETAILS1.length; i++){
+        apiGet(i);
+    }
+
+    //<---get json van API en geeft rang--->
+    function apiGet(sliderNummer) {
+        fetch('https://api.themoviedb.org/3/' + FETCHDETAILS1[i] + '?api_key=' + apikey + '&language=en-US' + FETCHDETAILS2[i])
             .then((response) => response.json())
-            .then((json) => dataVerwerker(json, i));
-			console.log("i =" + i);
+            .then((json) => dataVerwerker(json, sliderNummer));
     }
-}
 
-//<---!rowslider arrays declaratie (inhoud)!--->
-const AANTALROWSLIDERS = 4;
-var rowSliderTitle = Array.from(Array(10), () => new ArrAANTALROWSLIDERSay());
-var rowSliderReleaseDate = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
-var rowSliderImgSrc = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+    //<---API json naar slider array--->
+    function dataVerwerker(json, sliderTeller) {
+        for (i = 0; i < 10; i++) {
+            rowSliderTitle[sliderTeller][i] = json.results[i].title;
+            rowSliderReleaseDate[sliderTeller][i] = json.results[i].release_date;
+            rowSliderImgSrc[sliderTeller][i] = "https://image.tmdb.org/t/p/w200" + json.results[i].poster_path;
+            rowSliderMovieId[sliderTeller][i] = json.results[i].id;
+        }
 
-//<---!API json naar slider array!--->
-function dataVerwerker(json, sliderNummer) {
-
-	console.log(sliderNummer);
-    for (i = 0; i < 10; i++) {
-        rowSliderTitle[sliderNummer][i] = json.results[i].title;
-        rowSliderReleaseDate[sliderNummer][i] = json.results[i].release_date;
-        rowSliderImgSrc[sliderNummer][i] = "https://image.tmdb.org/t/p/w200" + json.results[i].poster_path;
-    }
-	console.log(rowSliderTitle[sliderNummer][i]);
-
-    for (i = 0; i < rowSliderTitle[0].length; i++) {
-        document.getElementById("img" + (sliderNummer+1) + "." + (i+1)).src = rowSliderImgSrc[sliderNummer][i];
-        document.getElementById("title" + (sliderNummer+1) + "." + (i+1)).innerHTML = rowSliderTitle[sliderNummer][i];
-        document.getElementById("datum" + (sliderNummer+1) + "." + (i+1)).innerHTML = rowSliderReleaseDate[sliderNummer][i];
+        for (i = 0; i < 10; i++) {
+            document.getElementById("img" + (sliderTeller+1) + "." + (i+1)).src = rowSliderImgSrc[sliderTeller][i];
+            document.getElementById("title" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderTitle[sliderTeller][i];
+            document.getElementById("datum" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderReleaseDate[sliderTeller][i];
+        }
     }
 }
 
@@ -104,9 +109,9 @@ function slider(richtingLinks, sliderNummer){
         datum.pop();
     }
 
-    for (i = 0; i < rowSliderTitle[0].length; i++) {    //pas toe de doorgeschoven afbeelding src
-        document.getElementById("img1." + (i+1)).src = imgsrc[i];
-        document.getElementById("title1." + (i+1)).innerHTML = title[i];
-        document.getElementById("datum1." + (i+1)).innerHTML = datum[i];
+    for (i = 0; i < 10; i++) {    //pas toe de doorgeschoven afbeelding src
+        document.getElementById("img" + (sliderNummer+1) + "." + (i+1)).src = imgsrc[i];
+        document.getElementById("title" + (sliderNummer+1) + "." + (i+1)).innerHTML = title[i];
+        document.getElementById("datum" + (sliderNummer+1) + "." + (i+1)).innerHTML = datum[i];
     }
 }
