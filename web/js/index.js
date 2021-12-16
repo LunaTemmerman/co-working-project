@@ -1,15 +1,17 @@
 
-//<---!zoekfunctie API code!--->
-function api() {
-	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
-	var query = document.getElementById("query").value;
-	if (query == "") {
-		return;
-	}
-	var query = query.replace(/\s/g, '+');
-	fetch('https://api.themoviedb.org/3/search/movie?api_key=' + apikey + '&query=' + query)
-	.then((response) => response.json())
-	.then((json) => display(json,"films"));
+function searchBox(page) {
+    var query = document.getElementById("query").value;
+    if (page == "home") {
+        window.location.href = "./zoek/?query=" + query 
+    }
+    else if (page == "zoekIn") {
+        var query = document.getElementById("zoekbalk").value;
+        window.location.href = "../zoek/?query=" + query
+        
+    }
+    else {
+        window.location.href = "../zoek/?query=" + query
+    }
 }
 function display(json, elementId) {
     const element = document.getElementById(elementId);
@@ -31,19 +33,12 @@ function display(json, elementId) {
     }
 }
 
-function load() {
-    document.getElementById("zoek").style.display = "none"
-    populair()
-}
-
 function populair() {
 	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
 	fetch('https://api.themoviedb.org/3/movie/popular?api_key=' + apikey)
 	.then((response) => response.json())
 	.then((json) => display(json, "populair"));
 }
-
-
 
 //<---!onload API code!--->
 function apiSlider() {

@@ -5,9 +5,9 @@ function api() {
 	id = params.get('id')
 	fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + apikey)
 	.then((response) => response.json())
-	.then((json) => display(json));
+	.then((json) => showMovieDetail(json));
 }
-function display(json) {
+function showMovieDetail(json) {
 	var genres = ""
 
 	document.getElementById("Title").innerHTML = json.title

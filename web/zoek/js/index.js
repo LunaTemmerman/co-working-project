@@ -1,5 +1,8 @@
 function hideSearch() {
     document.getElementById("zoek").style.display = "none"
+	let params = new URLSearchParams(location.search);
+	document.getElementById("zoekbalk").value = params.get('query')
+	search()
 }
 
 function search() {
