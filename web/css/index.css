@@ -48,3 +48,14 @@ ul {
     top: -44rem;
     left: 3rem;
 }
+
+.rowSliderFlex{
+    display: flex;
+    overflow: hidden;
+    gap: 1.5rem;
+}
+
+.rowSliderFlex p{
+    text-align: center;
+    min-height: 2rem;
+}
