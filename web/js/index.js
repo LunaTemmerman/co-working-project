@@ -46,7 +46,7 @@ function populair() {
 //<---!rowslider arrays declaratie (inhoud)!--->
 const AANTALROWSLIDERS = 4;
 var rowSliderTitle = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
-var rowSliderReleaseDate = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+var rowSliderScore = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
 var rowSliderImgSrc = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
 var rowSliderMovieId = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
 
@@ -74,7 +74,7 @@ function apiSlider() {
     function dataVerwerker(json, sliderTeller) {
         for (i = 0; i < 10; i++) {
             rowSliderTitle[sliderTeller][i] = json.results[i].title;
-            rowSliderReleaseDate[sliderTeller][i] = json.results[i].release_date;
+            rowSliderScore[sliderTeller][i] = (json.results[i].vote_average)*10;
             rowSliderImgSrc[sliderTeller][i] = "https://image.tmdb.org/t/p/w200" + json.results[i].poster_path;
             rowSliderMovieId[sliderTeller][i] = json.results[i].id;
         }
@@ -82,7 +82,7 @@ function apiSlider() {
         for (i = 0; i < 10; i++) {
             document.getElementById("img" + (sliderTeller+1) + "." + (i+1)).src = rowSliderImgSrc[sliderTeller][i];
             document.getElementById("title" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderTitle[sliderTeller][i];
-            document.getElementById("datum" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderReleaseDate[sliderTeller][i];
+            document.getElementById("score" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderScore[sliderTeller][i];
         }
     }
 }
@@ -91,27 +91,27 @@ function apiSlider() {
 function slider(richtingLinks, sliderNummer){
     imgsrc = rowSliderImgSrc[sliderNummer];
     title = rowSliderTitle[sliderNummer];
-    datum = rowSliderReleaseDate[sliderNummer];
+    score = rowSliderScore[sliderNummer];
 
     if (richtingLinks){
         imgsrc.push(imgsrc[0]);  //copier 1ste element naar vanachter
         imgsrc.shift();         //verwijder 1ste element
         title.push(title[0]);
         title.shift();
-        datum.push(datum[0]);
-        datum.shift();
+        score.push(score[0]);
+        score.shift();
     }else{
         imgsrc.unshift(imgsrc[imgsrc.length-1]);  //copier laatste element naar vanvoor
         imgsrc.pop();                             //verwijder laatste element
         title.unshift(title[title.length-1]);
         title.pop();
-        datum.unshift(datum[datum.length-1]);
-        datum.pop();
+        score.unshift(score[score.length-1]);
+        score.pop();
     }
 
     for (i = 0; i < 10; i++) {    //pas toe de doorgeschoven afbeelding src
         document.getElementById("img" + (sliderNummer+1) + "." + (i+1)).src = imgsrc[i];
         document.getElementById("title" + (sliderNummer+1) + "." + (i+1)).innerHTML = title[i];
-        document.getElementById("datum" + (sliderNummer+1) + "." + (i+1)).innerHTML = datum[i];
+        document.getElementById("score" + (sliderNummer+1) + "." + (i+1)).innerHTML = score[i];
     }
 }
