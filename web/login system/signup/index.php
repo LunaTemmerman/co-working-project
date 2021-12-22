@@ -43,7 +43,7 @@ $username=$_POST['username'];
 $password=$_POST['password'];
 $birthdate=$_POST['birthdate'];
 
-$sql = "INSERT INTO `tbl_contact` (`Id`, `username`, `password`, `birthdate`) VALUES ('0', '$username', '$password', '$birthdate')";
+$sql = "INSERT INTO `login` (`Id`, `username`, `password`, `birthdate`) VALUES ('0', '$username', '$password', '$birthdate')";
 $rs = mysqli_query($conn, $sql);
 
 if($rs)
