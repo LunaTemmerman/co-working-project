@@ -13,6 +13,7 @@ section h2{
 .scrollmenu {
     overflow: auto;
     white-space: nowrap;
+    padding-left: -100px;
 }
 
 .moviecard {
@@ -55,9 +56,10 @@ section h2{
 
 .rowSliderFlex{
     display: flex;
+    justify-content: space-between;
     overflow: hidden;
     gap: 1.5rem;
-    padding: 0;
+    transition: 0.6s ease;
 }
 
 .rowSliderDiv{
@@ -69,6 +71,7 @@ section h2{
 .rowSliderFlex p{
     text-align: center;
     min-height: 2rem;
+    max-width: 200px;
 }
 
 .rowSliderFlex img{
@@ -79,7 +82,7 @@ section h2{
     display: flex;
 }
 
-.prev, .next {
+.prevButton, .nextButton {
     max-height: 2rem;
     background: black;
     opacity: 0.7;
@@ -89,22 +92,24 @@ section h2{
     color: white;
     font-weight: bold;
     font-size: 18px;
-    transition: 0.6s ease;
     border-radius: 3px;
     user-select: none;
 }
 
-.prev:hover, .next:hover {
+.prevButton:hover, .nextButton:hover {
     opacity: 0.95;
 }
 
-.prev {
+.prevButton {
     margin-right: -2rem;
+    visibility: hidden;
 }
 
-.next {
+.nextButton {
     margin-left: -2rem;
 }
+
+
 
 
 

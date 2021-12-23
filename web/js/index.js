@@ -44,14 +44,29 @@ function populair() {
 }
 
 //<---!rowslider arrays declaratie (inhoud)!--->
-const AANTALROWSLIDERS = 4;
-var rowSliderTitle = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
-var rowSliderScore = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
-var rowSliderImgSrc = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
-var rowSliderMovieId = Array.from(Array(10), () => new Array(AANTALROWSLIDERS));
+const AANTALROWSLIDERS = 7;
+const AANTALELEMENTEN = 20;
+var rowSliderTitle = Array.from(Array(AANTALELEMENTEN), () => new Array(AANTALROWSLIDERS));
+var rowSliderScore = Array.from(Array(AANTALELEMENTEN), () => new Array(AANTALROWSLIDERS));
+var rowSliderImgSrc = Array.from(Array(AANTALELEMENTEN), () => new Array(AANTALROWSLIDERS));
+var rowSliderMovieId = Array.from(Array(AANTALELEMENTEN), () => new Array(AANTALROWSLIDERS));
 
 //<---!onload API code!--->
 function apiSlider() {
+    for (let i = 0; i < AANTALROWSLIDERS; i++) {
+        let slider_doc = document.getElementById("slider" + i);
+        let htmlCode = "";
+        for (let x = 0; x < AANTALELEMENTEN; x++){
+            let imgId = "img"+ i +"."+ x;
+            let titleId = "title"+ i +"."+ x;
+            let scoreId = "score"+ i +"."+ x;
+            htmlCode += `<li><img id=${imgId} src="http://placehold.it/200"/><p>
+                            <span id=${titleId}>Placeholder</span>-
+                            <span id=${scoreId}>T:???</span></p></li>`;
+        }
+        slider_doc.innerHTML = htmlCode;
+    }
+
     //link genres ids "https://api.themoviedb.org/3/genre/movie/list?api_key=000cfc8a44435ac1017a805bb5b2bbac&language=en-US"
     var DISCOVER = "discover/movie";
     var DISCOVER_BEGIN_URL = "&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=";
@@ -72,46 +87,38 @@ function apiSlider() {
 
     //<---API json naar slider array--->
     function dataVerwerker(json, sliderTeller) {
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < AANTALELEMENTEN; i++) {
             rowSliderTitle[sliderTeller][i] = json.results[i].title;
             rowSliderScore[sliderTeller][i] = (json.results[i].vote_average)*10;
             rowSliderImgSrc[sliderTeller][i] = "https://image.tmdb.org/t/p/w200" + json.results[i].poster_path;
             rowSliderMovieId[sliderTeller][i] = json.results[i].id;
         }
 
-        for (i = 0; i < 10; i++) {
-            document.getElementById("img" + (sliderTeller+1) + "." + (i+1)).src = rowSliderImgSrc[sliderTeller][i];
-            document.getElementById("title" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderTitle[sliderTeller][i];
-            document.getElementById("score" + (sliderTeller+1) + "." + (i+1)).innerHTML = rowSliderScore[sliderTeller][i];
+        for (i = 0; i < AANTALELEMENTEN; i++) {
+            document.getElementById("img" + sliderTeller + "." + i).src = rowSliderImgSrc[sliderTeller][i];
+            document.getElementById("title" + sliderTeller + "." + i).innerHTML = rowSliderTitle[sliderTeller][i];
+            document.getElementById("score" + sliderTeller + "." + i).innerHTML = rowSliderScore[sliderTeller][i];
         }
     }
 }
 
 //<---!rowSlider doorschuif logica!--->
+var sliderId = new Array(20).fill(0);
 function slider(richtingLinks, sliderNummer){
-    imgsrc = rowSliderImgSrc[sliderNummer];
-    title = rowSliderTitle[sliderNummer];
-    score = rowSliderScore[sliderNummer];
 
-    if (richtingLinks){
-        imgsrc.push(imgsrc[0]);  //copier 1ste element naar vanachter
-        imgsrc.shift();         //verwijder 1ste element
-        title.push(title[0]);
-        title.shift();
-        score.push(score[0]);
-        score.shift();
-    }else{
-        imgsrc.unshift(imgsrc[imgsrc.length-1]);  //copier laatste element naar vanvoor
-        imgsrc.pop();                             //verwijder laatste element
-        title.unshift(title[title.length-1]);
-        title.pop();
-        score.unshift(score[score.length-1]);
-        score.pop();
-    }
+    sliderId[sliderNummer] = richtingLinks ? sliderId[sliderNummer]+1 : sliderId[sliderNummer]-1;
 
-    for (i = 0; i < 10; i++) {    //pas toe de doorgeschoven afbeelding src
-        document.getElementById("img" + (sliderNummer+1) + "." + (i+1)).src = imgsrc[i];
-        document.getElementById("title" + (sliderNummer+1) + "." + (i+1)).innerHTML = title[i];
-        document.getElementById("score" + (sliderNummer+1) + "." + (i+1)).innerHTML = score[i];
-    }
+    var hidderPrev;
+    sliderId[sliderNummer] >= 0 ? hidderPrev = "hidden" : hidderPrev = "visible";
+    document.getElementById("prev" + sliderNummer).style.visibility= hidderPrev;
+
+    var hidderNext;
+    sliderId[sliderNummer] <= -AANTALELEMENTEN+6 ? hidderNext = "hidden" : hidderNext = "visible";
+    document.getElementById("next" + sliderNummer).style.visibility= hidderNext;
+
+    let slider_doc = document.getElementById("slider" + sliderNummer);
+    slider_doc.style.marginLeft = (sliderId[sliderNummer]*226) +"px";
 }
+
+
+
