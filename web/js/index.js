@@ -60,9 +60,9 @@ function apiSlider() {
             let imgId = "img"+ i +"."+ x;
             let titleId = "title"+ i +"."+ x;
             let scoreId = "score"+ i +"."+ x;
-            htmlCode += `<li><img id=${imgId} src="http://placehold.it/200"/><p>
-                            <span id=${titleId}>Placeholder</span>-
-                            <span id=${scoreId}>T:???</span></p></li>`;
+            htmlCode += `<li><img id=${imgId} src="http://placehold.it/200x300"/><p>
+                            <span id=${titleId}>Placeholder</span>     
+                            <span class="vet-font" id=${scoreId}></span></p></li>`;
         }
         slider_doc.innerHTML = htmlCode;
     }
@@ -89,7 +89,7 @@ function apiSlider() {
     function dataVerwerker(json, sliderTeller) {
         for (i = 0; i < AANTALELEMENTEN; i++) {
             rowSliderTitle[sliderTeller][i] = json.results[i].title;
-            rowSliderScore[sliderTeller][i] = (json.results[i].vote_average)*10;
+            rowSliderScore[sliderTeller][i] = (json.results[i].vote_average)*10+'%';
             rowSliderImgSrc[sliderTeller][i] = "https://image.tmdb.org/t/p/w200" + json.results[i].poster_path;
             rowSliderMovieId[sliderTeller][i] = json.results[i].id;
         }
