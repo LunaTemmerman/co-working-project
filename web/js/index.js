@@ -43,6 +43,16 @@ function populair() {
 	.then((json) => display(json, "populair"));
 }
 
+function searchBox(page) {
+    var query =  document.getElementById("query").value
+    if (page == 'home') { 
+        window.location.replace("./zoek/?querry=" + query)
+    }
+    else { 
+        window.location.replace("../zoek/?querry=" + query)
+    }
+}
+
 //<---!rowslider arrays declaratie (inhoud)!--->
 const AANTALROWSLIDERS = 7;
 const AANTALELEMENTEN = 20;

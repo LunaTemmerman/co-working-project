@@ -36,3 +36,13 @@ function showSearch(json, elementId) {
         document.getElementById("zoek").scrollIntoView();
     }
 }
+
+function loadSearch() {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	var querry = urlParams.get('querry')
+	if (querry != "") {
+		document.getElementById("zoekbalk").value = querry
+		search()
+	}
+}

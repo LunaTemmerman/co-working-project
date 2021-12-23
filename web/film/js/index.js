@@ -1,8 +1,10 @@
-function api() {
+function loadMovie() {
 	var apikey = "000cfc8a44435ac1017a805bb5b2bbac"
-
-	let params = new URLSearchParams(location.search);
-	id = params.get('id')
+	
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	var id = urlParams.get('id')
+	console.log(id)
 	fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + apikey)
 	.then((response) => response.json())
 	.then((json) => showMovieDetail(json));
@@ -22,7 +24,4 @@ function showMovieDetail(json) {
 	document.getElementById("Plot").innerHTML = json.overview
 	document.getElementById("Rating").innerHTML = "★ " + json.vote_average + "/10"
 	document.getElementById("Backdrop").src = "https://image.tmdb.org/t/p/original" + json.backdrop_path
-}
-function load() {
-	api()
 }

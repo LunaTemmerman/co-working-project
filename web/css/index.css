@@ -1,115 +1,112 @@
 .navbar-brand {
-    padding-bottom: unset;
+	padding-bottom: unset;
 }
 
 ul {
-    list-style: none;
+	list-style: none;
 }
 
-section h2{
-    margin-left: 42px;
+section h2 {
+	margin-left: 42px;
 }
 
 .scrollmenu {
-    overflow: auto;
-    white-space: nowrap;
-    padding-left: -100px;
+	overflow: auto;
+	white-space: nowrap;
+	padding-left: -100px;
 }
 
 .moviecard {
-    width: 18rem;
-    display: inline-block;
-    margin-left: 2rem;
-    padding: 1rem;
+	width: 18rem;
+	display: inline-block;
+	margin-left: 2rem;
+	padding: 1rem;
 }
 
 .moviecard a div {
-    overflow: clip;
+	overflow: clip;
 }
 
 .moviecard img:hover {
-    transition: all 500ms ease;
-    transform: scale(1.05) perspective(1px)
+	transition: all 500ms ease;
+	transform: scale(1.05) perspective(1px);
 }
 
 .search {
-    margin: 1rem 1rem;
+	margin: 1rem 1rem;
 }
 
 .back {
-    width: 100vw;
-    background: #ffffff;
-    overflow: hidden;
+	width: 100vw;
+	background: #ffffff;
+	overflow: hidden;
 }
 
 .backdrop {
-    width: 100%;
-   object-fit: cover;
-   opacity: 0.3;
+	width: 100%;
+	object-fit: cover;
+	opacity: 0.3;
 }
 
 .movieInfo {
-    position: relative;
-    top: -44rem;
-    left: 3rem;
+	position: relative;
+	top: -44rem;
+	left: 3rem;
+	width: 90%;
 }
 
-.rowSliderFlex{
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
-    gap: 1.5rem;
-    transition: 0.6s ease;
+.rowSliderFlex {
+	display: flex;
+	justify-content: space-between;
+	overflow: hidden;
+	gap: 1.5rem;
+	transition: 0.6s ease;
 }
 
-.rowSliderDiv{
-    padding-left: 2rem;
-    display: flex;
-    #align-items: center;
+.rowSliderDiv {
+	padding-left: 2rem;
+	display: flex;
 }
 
-.rowSliderFlex p{
-    text-align: center;
-    min-height: 2rem;
-    max-width: 200px;
+.rowSliderFlex p {
+	text-align: center;
+	min-height: 2rem;
+	max-width: 200px;
 }
 
-.rowSliderFlex img{
-    border-radius:8px;
+.rowSliderFlex img {
+	border-radius: 8px;
 }
 
 .buttonFlex {
-    display: flex;
+	display: flex;
 }
 
-.prevButton, .nextButton {
-    max-height: 2rem;
-    background: black;
-    opacity: 0.7;
-    cursor: pointer;
-    margin-top: 9rem;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 3px;
-    user-select: none;
+.prevButton,
+.nextButton {
+	max-height: 2rem;
+	background: black;
+	opacity: 0.7;
+	cursor: pointer;
+	margin-top: 9rem;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 3px;
+	user-select: none;
 }
 
-.prevButton:hover, .nextButton:hover {
-    opacity: 0.95;
+.prevButton:hover,
+.nextButton:hover {
+	opacity: 0.95;
 }
 
 .prevButton {
-    margin-right: -2rem;
-    visibility: hidden;
+	margin-right: -2rem;
+	visibility: hidden;
 }
 
 .nextButton {
-    margin-left: -2rem;
+	margin-left: -2rem;
 }
-
-
-
-
-
