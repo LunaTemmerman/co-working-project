@@ -18,6 +18,24 @@ nav {
 	margin-bottom: 60px;
 }
 
+.nav-item{
+	border: 2px solid #D6D6D6;
+	padding: 5px;
+	border-radius: 18px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.nav-link{
+	padding: 0;
+}
+
+.nav-item:hover{
+	border-color: #282828;
+	background-color: #EEEEEE;
+	color: black;
+}
+
 .scrollmenu {
 	overflow: auto;
 	white-space: nowrap;
@@ -63,15 +81,11 @@ nav {
 	width: 90%;
 }
 
-/*carousel opmaak*/
-.rowSliderFlex {
-	display: flex;
-	justify-content: space-between;
-	overflow: hidden;
-	gap: 1.5rem;
-	transition: 0.6s ease;
+.home section{
+	border-bottom: 2px solid #D8D8D8;
 }
 
+/*carousel opmaak*/
 .rowSliderFlex {
 	display: flex;
 	justify-content: space-between;
@@ -87,15 +101,10 @@ nav {
 
 .rowSliderFlex p {
 	text-align: center;
-	min-height: 2rem;
+	min-height: 90px;
 	max-width: 200px;
 	margin-top: 10px;
-}
-
-.rowSliderFlex p {
-	text-align: center;
-	min-height: 2rem;
-	max-width: 200px;
+	margin-bottom: 0;
 }
 
 .rowSliderFlex img {
@@ -108,19 +117,19 @@ nav {
 
 .prevButton, .nextButton {
 	max-height: 2rem;
-	background: black;
+	background: #151515;
 	opacity: 0.7;
 	cursor: pointer;
 	margin-top: 9rem;
-	padding: 16px 16px 40px 16px;
+	padding: 16px 16px 42px 16px;
 	color: white;
 	font-weight: bold;
 	font-size: 18px;
-	border-radius: 3px;
+	border-radius: 25%;
 	user-select: none;
 }
 
-.prevButton:hover,nextButton:hover {
+.prevButton:hover, .nextButton:hover{
 	opacity: 0.95;
 }
 
