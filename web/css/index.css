@@ -87,6 +87,7 @@ nav {
 
 /*carousel opmaak*/
 .rowSliderFlex {
+	min-height: 420px;
 	display: flex;
 	justify-content: space-between;
 	overflow: hidden;
@@ -101,7 +102,7 @@ nav {
 
 .rowSliderFlex p {
 	text-align: center;
-	min-height: 90px;
+	min-height: 46px;
 	max-width: 200px;
 	margin-top: 10px;
 	margin-bottom: 0;
@@ -140,4 +141,16 @@ nav {
 
 .nextButton {
 	margin-left: -2rem;
+}
+
+.sterSvg{
+	z-index: 1;
+	height: 15px;
+	width: auto;
+}
+
+.sterSvgFlex{
+	display: flex;
+	gap: 5px;
+	justify-content: center;
 }

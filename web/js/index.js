@@ -71,8 +71,8 @@ function apiSlider() {
             let titleId = "title"+ i +"."+ x;
             let scoreId = "score"+ i +"."+ x;
             htmlCode += `<li><img id=${imgId} src="http://placehold.it/200x300"/><p>
-                            <span id=${titleId}>Placeholder</span>     
-                            <span class="vet-font" id=${scoreId}></span></p></li>`;
+                            <span id=${titleId}>Placeholder</span></p>
+                            <div id=${scoreId} class="sterSvgFlex"></div></li>`;
         }
         slider_doc.innerHTML = htmlCode;
     }
@@ -97,9 +97,10 @@ function apiSlider() {
 
     //<---API json naar slider array--->
     function dataVerwerker(json, sliderTeller) {
+
         for (i = 0; i < AANTALELEMENTEN; i++) {
             rowSliderTitle[sliderTeller][i] = json.results[i].title;
-            rowSliderScore[sliderTeller][i] = (json.results[i].vote_average)*10+'%';
+            rowSliderScore[sliderTeller][i] = json.results[i].vote_average;
             rowSliderImgSrc[sliderTeller][i] = "https://image.tmdb.org/t/p/w200" + json.results[i].poster_path;
             rowSliderMovieId[sliderTeller][i] = json.results[i].id;
         }
@@ -107,8 +108,25 @@ function apiSlider() {
         for (i = 0; i < AANTALELEMENTEN; i++) {
             document.getElementById("img" + sliderTeller + "." + i).src = rowSliderImgSrc[sliderTeller][i];
             document.getElementById("title" + sliderTeller + "." + i).innerHTML = rowSliderTitle[sliderTeller][i];
-            document.getElementById("score" + sliderTeller + "." + i).innerHTML = rowSliderScore[sliderTeller][i];
+            sterrenToevoeger(sliderTeller, i);
         }
+    }
+
+    function sterrenToevoeger(sliderTeller, i){
+        let starSvg = '<svg class="sterSvg" x="0px" y="0px" viewBox="0 0 172 172" ><g transform="translate(4.3,4.3) scale(0.95,0.95)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g id="original-icon 1" fill="#ffbb3c" stroke="#ff9a3c" stroke-width="9" stroke-linejoin="round"><path d="M35.088,167.184c-0.688,0 -1.376,-0.344 -2.064,-0.688c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-36.808c-1.376,-0.688 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l20.984,-54.696c0.688,-1.032 2.064,-2.064 3.44,-2.064c1.376,0 2.752,1.032 3.096,2.064l20.984,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.408,36.808l15.136,56.416c0.344,1.376 0,2.752 -1.376,3.784c-1.032,0.688 -2.752,1.032 -3.784,0l-49.192,-31.648l-49.192,31.648c-0.688,0.688 -1.032,0.688 -1.72,0.688z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g id="original-icon" fill="#ffbb3c" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M35.088,167.184c-0.688,0 -1.376,-0.344 -2.064,-0.688c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-36.808c-1.376,-0.688 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l20.984,-54.696c0.688,-1.032 2.064,-2.064 3.44,-2.064c1.376,0 2.752,1.032 3.096,2.064l20.984,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.408,36.808l15.136,56.416c0.344,1.376 0,2.752 -1.376,3.784c-1.032,0.688 -2.752,1.032 -3.784,0l-49.192,-31.648l-49.192,31.648c-0.688,0.688 -1.032,0.688 -1.72,0.688z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>';
+        let halfStarSvg = '<svg class="sterSvg" x="0px" y="0px" viewBox="0 0 172 172"><g transform="translate(4.73,4.73) scale(0.945,0.945)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g fill="#ffbb3c" stroke="#ff9a3c" stroke-width="10" stroke-linejoin="round"><path d="M136.912,167.184c-0.688,0 -1.376,-0.344 -1.72,-0.688l-49.192,-31.304l-49.192,31.648c-1.032,0.688 -2.752,0.688 -3.784,0c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-37.152c-1.376,-1.032 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l21.328,-54.696c0.344,-1.032 1.72,-2.064 3.096,-2.064c1.376,0 2.752,1.032 3.096,2.064l21.328,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.752,37.152l14.792,56.416c0.344,1.376 0,2.752 -1.376,3.784c-0.344,0 -1.032,0.344 -1.72,0.344zM86,127.624c0,0 1.376,0.344 1.72,0.688l43.344,27.864l-13.072,-49.88c-0.344,-1.376 0,-2.752 1.032,-3.44l40.248,-33.024l-51.6,-2.752c-1.376,0 -2.408,-1.032 -3.096,-2.064l-18.576,-48.504z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g fill="#ffbb3c" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M136.912,167.184c-0.688,0 -1.376,-0.344 -1.72,-0.688l-49.192,-31.304l-49.192,31.648c-1.032,0.688 -2.752,0.688 -3.784,0c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-37.152c-1.376,-1.032 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l21.328,-54.696c0.344,-1.032 1.72,-2.064 3.096,-2.064c1.376,0 2.752,1.032 3.096,2.064l21.328,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.752,37.152l14.792,56.416c0.344,1.376 0,2.752 -1.376,3.784c-0.344,0 -1.032,0.344 -1.72,0.344zM86,127.624c0,0 1.376,0.344 1.72,0.688l43.344,27.864l-13.072,-49.88c-0.344,-1.376 0,-2.752 1.032,-3.44l40.248,-33.024l-51.6,-2.752c-1.376,0 -2.408,-1.032 -3.096,-2.064l-18.576,-48.504z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>'
+
+        let elementId = document.getElementById("score"+ sliderTeller +"."+ i);
+        let score = Math.round(rowSliderScore[sliderTeller][i]);
+        let starString = "";
+
+        for (let x = 0; x < (Math.floor(score/2)); x++){
+            starString += starSvg;
+        }
+        if (score % 2 !== 0){
+            starString += halfStarSvg;
+        }
+        elementId.innerHTML = starString;
     }
 }
 
