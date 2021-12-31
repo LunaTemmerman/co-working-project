@@ -1,7 +1,6 @@
 <?php
 
-$name = isset($_GET['name']) ? $_GET['name'] : false;
-$age = isset($_GET['age']) ? $_GET['age'] : false;
+$username = isset($_GET['username']) ? $_GET['username'] : false;
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -15,13 +14,8 @@ $age = isset($_GET['age']) ? $_GET['age'] : false;
 <?php
 
 // Name sent in
-if ($name) {
-    echo '<p>Thank you ' . htmlentities($name). '</p>';
-}
-
-// Age sent in
-else if ($age) {
-    echo '<p>Thank you, ' . htmlentities($age). ' year old stranger</p>';
+if ($username) {
+    echo '<p>Thank you ' . htmlentities($username). '</p>';
 }
 
 // Nothing sent in

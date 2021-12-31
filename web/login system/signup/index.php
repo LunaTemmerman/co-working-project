@@ -6,9 +6,9 @@ ini_set('display_errors', 1);
 
 // Constanten (connectie-instellingen databank)
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'BeLeLuRo');
-define('DB_NAME', 'filmreviewacc');
+define('DB_USER', 'LunaTemmerman');
+define('DB_PASS', 'BeLeLuRo_!123');
+define('DB_NAME', 'accounthost');
 
 date_default_timezone_set('Europe/Brussels');
 
@@ -21,13 +21,11 @@ try {
     exit;
 }
 
-$name = isset($_POST['name']) ? (string)$_POST['name'] : '';
+$username = isset($_POST['username']) ? (string)$_POST['username'] : '';
 $mail = isset($_POST['mail']) ? (string)$_POST['mail']: '';
-$birth = isset($POST['birth']) ? (string)$_POST['birth']: '';
 $password = isset($POST['password']) ? (string)$_POST['password']: '';
 $msgName = '';
 $msgMail = '';
-$msgBirth = '';
 $msgPassword = '';
 // form is sent: perform formchecking!
 if (isset($_POST['btnSubmit'])) {
@@ -35,13 +33,8 @@ if (isset($_POST['btnSubmit'])) {
     $allOk = true;
 
     // name not empty
-    if (trim($name) === '') {
+    if (trim($username) === '') {
         $msgName = 'Please enter a name';
-        $allOk = false;
-    }
-
-    if (trim($mail) === '') {
-        $msgMail = 'Please enter an email adress';
         $allOk = false;
     }
 
@@ -52,16 +45,16 @@ if (isset($_POST['btnSubmit'])) {
 
     if (trim($password) === '') {
         $msgPassword = 'Please enter a password';
-        $allOk = false;
+        $allOk = true;
     }
 
     // end of form check. If $allOk still is true, then the form was sent in correctly
     if ($allOk) {
-        $stmt = $db->exec('INSERT INTO login (sender, mail, birth, password, added_on) VALUES (\'' . $name . '\',\'' . $mail . '\',\'' . $birth . '\',\'' . $password . '\',\'' . (new DateTime())->format('Y-m-d H:i:s') . '\')');
+        $stmt = $db->exec('INSERT INTO login (username, mail, password, added_on) VALUES (\'' . $username . '\',\'' . $mail . '\',\'' . $password . '\',\'' . (new DateTime())->format('Y-m-d H:i:s') . '\')');
 
         // the query succeeded, redirect to this very same page
         if ($db->lastInsertId() !== 0) {
-            header('Location: formchecking_thanks.php?name=' . urlencode($name));
+            header('Location: formchecking.php?name=' . urlencode($username));
             exit();
         } // the query failed
         else {
@@ -78,7 +71,7 @@ if (isset($_POST['btnSubmit'])) {
 <head>
     <title>Testform</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/styles.css"/>
 </head>
 <body>
 <header>
@@ -87,39 +80,33 @@ if (isset($_POST['btnSubmit'])) {
     <section class="firstscreen whitetext">
         <h1>CONTACT</h1>
     </section>
-    <section class="flexcontainer twelve">
-        <div class="childcolumn eight blacktext">
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                <h1>Testform</h1>
-                <p class="message">All fields are obligated, unless indicated differently.</p>
+    <section>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <h1>Testform</h1>
+            <p class="message">All fields are obligated, unless indicated differently.</p>
 
-                <div>
-                    <label for="name">your name</label>
-                    <input type="text" id="name" name="name" value="<?php echo $name; ?>" class="input-text"/>
-                    <span class="message error"><?php echo $msgName; ?></span>
-                </div>
+            <div>
+                <label for="username">your username</label>
+                <input type="text" id="username" name="username" value="<?php echo $username; ?>" class="input-text"/>
+                <span class="message error"><?php echo $msgName; ?></span>
+            </div>
 
-                <div>
-                    <label for="mail">your e-mail</label>
-                    <input type="email" id="mail" name="mail" value="<?php echo $mail; ?>" class="input-text"/>
-                    <span class="message error"><?php echo $msgMail; ?></span>
-                </div>
+            <div>
+                <label for="mail">your e-mail</label>
+                <input type="email" id="mail" name="mail" value="<?php echo $mail; ?>" class="input-text"/>
+                <span class="message error"><?php echo $msgMail; ?></span>
+            </div>
 
-                <div>
-                    <label for="message">your birthdate</label>
-                    <input type="date" id="birth" name="birth" value="<?php echo $birth; ?>" class="input-text"/>
-                    <span class="message error"><?php echo $msgBirth; ?></span>
-                </div>
+            <div>
+                <label for="password">your password</label>
+                <input type="text" id="password" name="password" value="<?php echo $password; ?>" class="input-text"/>
+                <span class="message error"><?php echo $msgPassword; ?></span>
+            </div>
 
-                <div>
-                    <label for="name">your password</label>
-                    <input type="text" id="password" name="password" value="<?php echo $password; ?>" class="input-text"/>
-                    <span class="message error"><?php echo $msgPassword; ?></span>
-                </div>
-
-                <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit"/>
-            </form>
-        </div    </section>
+            <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit"/>
+        </form>
+        <p>Heeft u al een account? <a href="../login">Log hier in.</a></p>
+    </section>
 </main>
 <footer>
 </footer>

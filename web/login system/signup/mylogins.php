@@ -2,9 +2,9 @@
 
 // Constanten (connectie-instellingen databank)
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'BeLeLuRo');
-define('DB_NAME', 'filmreviewacc');
+define('DB_USER', 'LunaTemmerman');
+define('DB_PASS', 'BeLeLuRo_!123');
+define('DB_NAME', 'accounthost');
 
 
 date_default_timezone_set('Europe/Brussels');
@@ -34,7 +34,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php if (sizeof($items) > 0) { ?>
     <ul>
         <?php foreach ($items as $item) { ?>
-            <li><?php echo $item['sender']; ?>: <?php echo $item['name']; ?> <?php echo $item['mail']; ?> <?php echo $item['birth']; ?> <?php echo $item['password']; ?> (<?php echo (new Datetime($item['added_on']))->format('d-m-Y H:i:s'); ?>)</li>
+            <li><?php echo $item['username']; ?>: <?php echo $item['mail']; ?>  <?php echo $item['password']; ?> (<?php echo (new Datetime($item['added_on']))->format('d-m-Y H:i:s'); ?>)</li>
         <?php } ?>
     </ul>
     <?php
