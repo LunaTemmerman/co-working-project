@@ -1,114 +1,148 @@
 <?php
+// Include config file
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'luna.temmerman');
+define('DB_PASSWORD', '@zerty!123');
+define('DB_NAME', 'coproject');
 
-// Show all errors (for educational purposes)
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-// Constanten (connectie-instellingen databank)
-define('DB_HOST', 'localhost');
-define('DB_USER', 'LunaTemmerman');
-define('DB_PASS', 'BeLeLuRo_!123');
-define('DB_NAME', 'accounthost');
-
-date_default_timezone_set('Europe/Brussels');
-
-// Verbinding maken met de databank
-try {
-    $db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Verbindingsfout: ' . $e->getMessage();
-    exit;
+// Check connection
+if ($link === false) {
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-$username = isset($_POST['username']) ? (string)$_POST['username'] : '';
-$mail = isset($_POST['mail']) ? (string)$_POST['mail']: '';
-$password = isset($POST['password']) ? (string)$_POST['password']: '';
-$msgName = '';
-$msgMail = '';
-$msgPassword = '';
-// form is sent: perform formchecking!
-if (isset($_POST['btnSubmit'])) {
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
 
-    $allOk = true;
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // name not empty
-    if (trim($username) === '') {
-        $msgName = 'Please enter a name';
-        $allOk = false;
-    }
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter a username.";
+    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+        $username_err = "Username can only contain letters, numbers, and underscores.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = ?";
 
-    if (trim($mail) === '') {
-        $msgMail = 'Please enter a birthdate';
-        $allOk = false;
-    }
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-    if (trim($password) === '') {
-        $msgPassword = 'Please enter a password';
-        $allOk = true;
-    }
+            // Set parameters
+            $param_username = trim($_POST["username"]);
 
-    // end of form check. If $allOk still is true, then the form was sent in correctly
-    if ($allOk) {
-        $stmt = $db->exec('INSERT INTO login (username, mail, password, added_on) VALUES (\'' . $username . '\',\'' . $mail . '\',\'' . $password . '\',\'' . (new DateTime())->format('Y-m-d H:i:s') . '\')');
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
 
-        // the query succeeded, redirect to this very same page
-        if ($db->lastInsertId() !== 0) {
-            header('Location: formchecking.php?name=' . urlencode($username));
-            exit();
-        } // the query failed
-        else {
-            echo 'Databankfout.';
-            exit;
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "This username is already taken.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
         }
-
     }
 
-}
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter a password.";
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
 
-?><!DOCTYPE html>
-<html lang="nl">
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm password.";
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
+        }
+    }
+
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+
+            // Set parameters
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: ../login/index.php");
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    // Close connection
+    mysqli_close($link);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Testform</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="../../css/styles.css"/>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding: 20px; }
+    </style>
 </head>
 <body>
-<header>
-</header>
-<main class="container">
-    <section class="firstscreen whitetext">
-        <h1>CONTACT</h1>
-    </section>
-    <section>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <h1>Testform</h1>
-            <p class="message">All fields are obligated, unless indicated differently.</p>
-
-            <div>
-                <label for="username">your username</label>
-                <input type="text" id="username" name="username" value="<?php echo $username; ?>" class="input-text"/>
-                <span class="message error"><?php echo $msgName; ?></span>
-            </div>
-
-            <div>
-                <label for="mail">your e-mail</label>
-                <input type="email" id="mail" name="mail" value="<?php echo $mail; ?>" class="input-text"/>
-                <span class="message error"><?php echo $msgMail; ?></span>
-            </div>
-
-            <div>
-                <label for="password">your password</label>
-                <input type="text" id="password" name="password" value="<?php echo $password; ?>" class="input-text"/>
-                <span class="message error"><?php echo $msgPassword; ?></span>
-            </div>
-
-            <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit"/>
-        </form>
-        <p>Heeft u al een account? <a href="../login">Log hier in.</a></p>
-    </section>
-</main>
-<footer>
-</footer>
+<div class="wrapper">
+    <h2>Sign Up</h2>
+    <p>Please fill this form to create an account.</p>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Submit">
+            <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+        </div>
+        <p>Already have an account? <a href="../login/index.php">Login here</a>.</p>
+    </form>
+</div>
 </body>
 </html>
