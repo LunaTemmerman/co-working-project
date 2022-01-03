@@ -6,18 +6,16 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 
-// Constanten (connectie-instellingen databank)
-define('DB_HOST', 'localhost');
-define('DB_USER', 'LunaTemmerman');
-define('DB_PASS', 'BeLeLuRo_!123');
-define('DB_NAME', 'accounthost');
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'luna.temmerman');
+define('DB_PASSWORD', '@zerty!123');
+define('DB_NAME', 'coproject');
 
-date_default_timezone_set('Europe/Brussels');
-
+/* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Check connection
-if($link === false){
+if ($link === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
@@ -45,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM login WHERE username = ?";
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -74,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;
 
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: ../welcome.php");
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
