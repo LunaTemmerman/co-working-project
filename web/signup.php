@@ -44,6 +44,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
+    if(empty(trim($_POST["mail"]))) {
+        $mail_err = "Vul een email in!";
+    } else {
+        $mail = trim($_POST["mail"]);
+    }
+
     if(empty(trim($_POST["password"]))){
         $password_err = "Vul een wachtwoord in!";
     } elseif(strlen(trim($_POST["password"])) < 6){
@@ -61,14 +67,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($username_err) && empty($mail_err) && empty($password_err) && empty($confirm_password_err)){
 
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, mail, password) VALUES (?, ?, ?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_mail, $param_password);
 
             $param_username = $username;
+            $param_mail = $mail;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
             if(mysqli_stmt_execute($stmt)){
@@ -110,6 +117,11 @@ include_once './header.php';
             <label>Gebruikersnaam</label>
             <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
             <span class="invalid-feedback"><?php echo $username_err; ?></span>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="mail" class="form-control <?php echo (!empty($mail_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $mail; ?>">
+            <span class="invalid-feedback"><?php echo $mail_err; ?></span>
         </div>
         <div class="form-group">
             <label>Wachtwoord</label>
