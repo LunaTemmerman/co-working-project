@@ -120,6 +120,7 @@ nav {
 
 .rowSliderFlex img {
 	border-radius: 8px;
+	z-index: 0;
 }
 
 .buttonFlex {
@@ -138,6 +139,7 @@ nav {
 	font-size: 18px;
 	border-radius: 25%;
 	user-select: none;
+	z-index: 5;
 }
 
 .prevButton:hover, .nextButton:hover{
