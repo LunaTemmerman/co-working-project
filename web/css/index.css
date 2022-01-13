@@ -65,23 +65,12 @@ nav {
 	margin: 1rem 1rem;
 }
 
-.back {
-	width: 100vw;
-	background: #ffffff;
-	overflow: hidden;
-}
-
 .backdrop {
 	width: 100%;
-	object-fit: cover;
-	opacity: 0.3;
-}
-
-.movieInfo {
-	position: relative;
-	top: -44rem;
-	left: 3rem;
-	width: 90%;
+	height: 20rem;
+	object-fit: none;
+	opacity: 50%;
+	border-radius: 0.5rem
 }
 
 /*carousel opmaak*/
