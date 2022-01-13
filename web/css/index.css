@@ -143,3 +143,11 @@ nav {
 	justify-content: center;
 }
 
+
+.popcorn_logo {
+	content:url("../img/logo.svg");
+}
+
+.popcorn_logo:hover {
+	content:url("../img/new_logo.svg");
+}

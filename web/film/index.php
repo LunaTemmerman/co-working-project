@@ -19,6 +19,7 @@
 		></script>
 		<link rel="stylesheet" href="../css/index.css" />
 		<title>Film</title>
+		<link rel="shortcut icon" href="../img/logo.png" type="image/png">
 	</head>
 	<body onload="loadMovie()">
 		<?php
