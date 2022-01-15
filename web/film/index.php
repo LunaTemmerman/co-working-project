@@ -17,25 +17,6 @@ if ($link === false) {
     die("ERROR: Kon niet verbinden: " . mysqli_connect_error());
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $currentMovie_id = $_GET['id'];
-
-    $username = $_SESSION['username'];
-    $sql = "SELECT movie_id FROM users WHERE username=$username";
-    $existingMovie_id = mysqli_query($link, $sql);
-
-    $finalMovie_id = $currentMovie_id . "," . $existingMovie_id;
-
-    $insert = mysqli_query($link, "UPDATE users SET movie_id = $finalMovie_id WHERE username=$username");
-
-    if (!$insert) {
-        echo "Er ging iets mis!: " . mysqli_error();
-    } else {
-        echo "Film is succesvol toegevoegd!";
-    }
-}
-mysqli_close($link);
-
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -88,8 +69,38 @@ mysqli_close($link);
                 <form method="post">
                     <button type="submit" name="submit" value="submit">Ik heb deze film gekeken!</button>
                 </form>
+                <?php
 
-			</div>
+                if(isset($_POST['submit'])) {
+                    $currentMovie_id = $_GET['id'];
+
+                    $username = $_SESSION['username'];
+                    $sql = "SELECT movie_id FROM users WHERE username=$username";
+                    $existingMovie_id = mysqli_query($link, $sql);
+
+                    if ($existingMovie_id == "0") {
+                        $finalMovie_id = $currentMovie_id;
+                        echo $finalMovie_id;
+                    } else {
+                        $finalMovie_id = $currentMovie_id . "," . $existingMovie_id;
+                        echo $finalMovie_id;
+                    }
+
+                    $insert = mysqli_query($link, "UPDATE users SET movie_id = $finalMovie_id WHERE username=$username");
+
+                    if (!$insert) {
+                        echo "Er ging iets mis!: " . mysqli_error();
+                    } else {
+                        echo "Film is succesvol toegevoegd!";
+                    }
+
+                    mysqli_close($link);
+
+                }
+
+                ?>
+
+            </div>
 		</main>
 		<footer></footer>
 	</body>
