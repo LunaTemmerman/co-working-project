@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+    exit;
+}
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'luna.temmerman');
@@ -11,13 +17,26 @@ if ($link === false) {
     die("ERROR: Kon niet verbinden: " . mysqli_connect_error());
 }
 
-if(isset($_POST['submit'])) {
-    $movie_id=$_GET['id'];
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $currentMovie_id = $_GET['id'];
 
-    $insert = mysqli_query($link, "INSERT INTO users()")
+    $username = $_SESSION['username'];
+    $sql = "SELECT movie_id FROM users WHERE username=$username";
+    $existingMovie_id = mysqli_query($link, $sql);
+
+    $finalMovie_id = $currentMovie_id . "," . $existingMovie_id;
+
+    $insert = mysqli_query($link, "UPDATE users SET movie_id = $finalMovie_id WHERE username=$username");
+
+    if (!$insert) {
+        echo "Er ging iets mis!: " . mysqli_error();
+    } else {
+        echo "Film is succesvol toegevoegd!";
+    }
 }
+mysqli_close($link);
 
-<?>
+?>
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
@@ -67,7 +86,7 @@ if(isset($_POST['submit'])) {
 				<p id="Plot"></p>
 
                 <form method="post">
-                    <button type="submit" name="submit" value="submit">Ik heb deze film gekeken</button>
+                    <button type="submit" name="submit" value="submit">Ik heb deze film gekeken!</button>
                 </form>
 
 			</div>
