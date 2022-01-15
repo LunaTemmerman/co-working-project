@@ -15,6 +15,9 @@ if ($link === false) {
 $username = $_SESSION['username'];
 $id = $_SESSION['id'];
 
+$sql = "SELECT mail FROM users WHERE username=$username AND id=$id";
+$result = mysqli_query($link, $sql);
+
 $link->close();
 ?>
 
@@ -37,19 +40,7 @@ $link->close();
     <section>
         <p>Username: <?php echo $username ?></p>
         <p>ID: <?php echo $id ?></p>
-        <p>Email:
-        <?php
-        $sql = "SELECT mail FROM users WHERE username=$username OR id=$id";
-        $result = mysqli_query($link, $sql);
-        $resultCheck = mysqli_num_rows($result);
-
-        if($resultCheck > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo $row['mail'];
-            }
-        }
-        ?>
-        </p>
+        <p>Email: <?php echo $result ?></p>
     </section>
 </body>
 </html>

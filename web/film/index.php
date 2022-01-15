@@ -1,3 +1,23 @@
+<?php
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'luna.temmerman');
+define('DB_PASSWORD', '@zerty!123');
+define('DB_NAME', 'coproject');
+
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+if ($link === false) {
+    die("ERROR: Kon niet verbinden: " . mysqli_connect_error());
+}
+
+if(isset($_POST['submit'])) {
+    $movie_id=$_GET['id'];
+
+    $insert = mysqli_query($link, "INSERT INTO users()")
+}
+
+<?>
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
@@ -45,6 +65,11 @@
 				<p id="Genre"></p>
 				<p id="Runtime"></p>
 				<p id="Plot"></p>
+
+                <form method="post">
+                    <button type="submit" name="submit" value="submit">Ik heb deze film gekeken</button>
+                </form>
+
 			</div>
 		</main>
 		<footer></footer>
