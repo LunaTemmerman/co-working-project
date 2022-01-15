@@ -12,11 +12,8 @@ if ($link === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-$username = $_POST['username'];
-
-$sql = "SELECT id, email FROM users WHERE username=$username";
-$result = $link->query($sql);
-$row = $result->fetch_assoc();
+$username = $_SESSION['username'];
+$id = $_SESSION['id'];
 
 $link->close();
 ?>
@@ -39,8 +36,20 @@ $link->close();
     ?>
     <section>
         <p>Username: <?php echo $username ?></p>
-        <p>ID: <?php echo  $row["id"] ?></p>
-        <p>Email: </p><?php echo $row["mail"]?></p>
+        <p>ID: <?php echo $id ?></p>
+        <p>Email:
+        <?php
+        $sql = "SELECT mail FROM users WHERE username=$username OR id=$id";
+        $result = mysqli_query($link, $sql);
+        $resultCheck = mysqli_num_rows($result);
+
+        if($resultCheck > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo $row['mail'];
+            }
+        }
+        ?>
+        </p>
     </section>
 </body>
 </html>
