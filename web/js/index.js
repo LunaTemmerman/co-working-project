@@ -156,5 +156,11 @@ function elementClick(rowId, elementId){
     window.location.href = "film/?id=" + filmId;
 }
 
-
-
+function bekekenFilms() {
+	var bekekenFilms = document.getElementById('bekekenFilmId').innerHTML
+    if (bekekenFilms == "") {
+        return false
+    }
+	const bekekenFilmsArray = bekekenFilms.split(",");
+	console.log(bekekenFilmsArray)
+}

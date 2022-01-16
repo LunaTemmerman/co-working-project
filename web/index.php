@@ -28,7 +28,7 @@
     </section>
 
     <section>
-        <h2>Top 10 beste avontuur films</h2>
+        <h2>Top 20 beste avontuur films</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev1" onclick="slider(true, 1)">&#10094;</div>
@@ -39,7 +39,7 @@
     </section>
 
     <section>
-        <h2>Top 10 beste horror films</h2>
+        <h2>Top 20 beste horror films</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev2" onclick="slider(true, 2)">&#10094;</div>
@@ -50,7 +50,7 @@
     </section>
 
     <section>
-        <h2>Top 10 beste animatie films</h2>
+        <h2>Top 20 beste animatie films</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev3" onclick="slider(true, 3)">&#10094;</div>
@@ -61,7 +61,7 @@
     </section>
 
     <section>
-        <h2>Top 10 beste komedie films</h2>
+        <h2>Top 20 beste komedie films</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev4" onclick="slider(true, 4)">&#10094;</div>
@@ -72,7 +72,7 @@
     </section>
 
     <section>
-        <h2>Top 10 beste drama films</h2>
+        <h2>Top 20 beste drama films</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev5" onclick="slider(true, 5)">&#10094;</div>
@@ -83,7 +83,7 @@
     </section>
 
     <section>
-        <h2>Top 10 beste trillers</h2>
+        <h2>Top 20 beste trillers</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev6"  onclick="slider(true, 6)">&#10094;</div>
