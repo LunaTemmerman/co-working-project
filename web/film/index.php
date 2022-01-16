@@ -17,6 +17,9 @@ if ($link === false) {
     die("ERROR: Kon niet verbinden: " . mysqli_connect_error());
 }
 
+$id=$_SESSION['id'];
+$username=$_SESSION['username'];
+
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -43,7 +46,7 @@ if ($link === false) {
 	</head>
 	<body onload="loadMovie()">
 		<?php
-			include_once '../headersub.php'
+			include_once './headersub.php'
 		?>
 		<main class="container back">
 			<div class="row">
@@ -74,22 +77,29 @@ if ($link === false) {
                 if(isset($_POST['submit'])) {
                     $currentMovie_id = $_GET['id'];
 
-                    $username = $_SESSION['username'];
-                    $sql = "SELECT movie_id FROM users WHERE username=$username";
-                    $existingMovie_id = mysqli_query($link, $sql);
+                    $sql = "SELECT `movie_id` FROM `users` WHERE `username`='$username'";
+                    $result = mysqli_query($link, $sql);
 
-                    if ($existingMovie_id == "0") {
-                        $finalMovie_id = $currentMovie_id;
-                        echo $finalMovie_id;
+                    if(!$result) {
+                        die('Kon data niet ophalen: ' . mysqli_error($link));
                     } else {
-                        $finalMovie_id = $currentMovie_id . "," . $existingMovie_id;
-                        echo $finalMovie_id;
+
+                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                            $existingMovie_id=$row['movie_id'];
+                        }
                     }
 
-                    $insert = mysqli_query($link, "UPDATE users SET movie_id = $finalMovie_id WHERE username=$username");
+                    if($existingMovie_id !== "0") {
+                        $finalMovie_id = "{$currentMovie_id},{$existingMovie_id}";
+                    } else {
+                        $finalMovie_id = $currentMovie_id;
+                    }
+
+                    $insert = mysqli_query
+                    ($link, "UPDATE `users` SET `movie_id`='$finalMovie_id' WHERE `id`='$id'");
 
                     if (!$insert) {
-                        echo "Er ging iets mis!: " . mysqli_error();
+                        echo "Er ging iets mis!: " . mysqli_error($link);
                     } else {
                         echo "Film is succesvol toegevoegd!";
                     }

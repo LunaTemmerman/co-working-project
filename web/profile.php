@@ -15,8 +15,18 @@ if ($link === false) {
 $username = $_SESSION['username'];
 $id = $_SESSION['id'];
 
-$sql = "SELECT mail FROM users WHERE username=$username AND id=$id";
+$sql = "SELECT `mail`, `movie_id` FROM `users` WHERE `username`='$username'";
 $result = mysqli_query($link, $sql);
+
+if(!$result) {
+    die('Kon data niet ophalen: ' . mysqli_error($link));
+} else {
+
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $mail=$row['mail'];
+        $movie_id=$row['movie_id'];
+    }
+}
 
 $link->close();
 ?>
@@ -40,7 +50,8 @@ $link->close();
     <section>
         <p>Username: <?php echo $username ?></p>
         <p>ID: <?php echo $id ?></p>
-        <p>Email: <?php echo $result ?></p>
+        <p>Email: <?php echo $mail ?></p>
+        <p>Bekeken film ID's: <?php echo $movie_id ?></p>
     </section>
 </body>
 </html>

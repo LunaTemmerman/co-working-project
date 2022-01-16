@@ -22,10 +22,11 @@
     <link rel="shortcut icon" href="../img/logo.png" type="image/png">
 </head>
 <body onload="loadSearch()">
+
 <?php
-include_once '../headersub.php';
+include_once './headersub.php';
 ?>
-</header>
+
 <main class="container mt-5">
     <h1>Zoek naar je favoriete film</h1>
     <section class="d-flex justify-content-center">
