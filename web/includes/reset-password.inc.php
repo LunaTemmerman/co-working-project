@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if(empty($new_password_err) && empty($confirm_password_err)){
-        $sql = "UPDATE users SET password = ? WHERE id = ?";
+        $sql = "UPDATE `users` SET `password`=? WHERE `id`=?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
@@ -70,6 +70,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Wachtwoord resetten</title>
+    <link rel="shortcut icon" href="../img/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -78,21 +81,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
 <?php
-include_once '../header.php';
+include_once './headersub.php';
 ?>
     <div class="wrapper">
         <h2>Wachtwoord resetten</h2>
         <p>Vul dit formulier in om uw wachtwoord te resetten.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>Nieuw wachtwoord</label>
-                <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
-                <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
+                <label>Nieuw wachtwoord
+                    <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
+                    <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
+                </label>
             </div>
             <div class="form-group">
-                <label>Herhaal nieuw wachtwoord</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                <label>Herhaal nieuw wachtwoord
+                    <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
+                    <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                </label>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
