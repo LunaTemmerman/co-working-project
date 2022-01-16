@@ -47,22 +47,25 @@ $link->close();
     <?php
     include_once "header.php";
     ?>
-    <section>
-        <p>Username: <?php echo $username ?></p>
-        <p>ID: <?php echo $id ?></p>
-        <p>Email: <?php echo $mail ?></p>
-        <p>Bekeken film ID's:</p><p id="bekekenFilmId"><?php echo $movie_id ?></p>
-    </section>
-    <section>
-        <h2>Bekeken films</h2>
+    <main class="container">
+        <h1>Profiel</h1>
+        <section>
+            <p>Username: <?php echo $username ?></p>
+            <p>ID: <?php echo $id ?></p>
+            <p>Email: <?php echo $mail ?></p>
+            <p>Bekeken film ID's:</p><p id="bekekenFilmId"><?php echo $movie_id ?></p>
+        </section>
+        <section>
+            <h2>Bekeken films</h2>
 
-        <div class="rowSliderDiv">
-            <div class="prevButton" id="prev0" onclick="slider(true, 0)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider0">
-            </ul>
-            <div class="nextButton" id="next0" onclick="slider(false, 0)">&#10095;</div>
-        </div>
-    </section>
+            <div class="rowSliderDiv">
+                <div class="prevButton" id="prev0" onclick="slider(true, 0)">&#10094;</div>
+                <ul class="rowSliderFlex" id="slider0">
+                </ul>
+                <div class="nextButton" id="next0" onclick="slider(false, 0)">&#10095;</div>
+            </div>
+        </section>
+    </main>
     <script src="./js/bekekenFilms.js"></script>
     <script src="./js/index.js"></script>
 </body>
