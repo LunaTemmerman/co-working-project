@@ -62,6 +62,7 @@ var rowSliderImgSrc = Array.from(Array(AANTALELEMENTEN), () => new Array(AANTALR
 var rowSliderMovieId = Array.from(Array(AANTALELEMENTEN), () => new Array(AANTALROWSLIDERS));
 
 //<---!onload API code!--->
+const APIKEY = "000cfc8a44435ac1017a805bb5b2bbac";
 function apiSlider() {
     for (let i = 0; i < AANTALROWSLIDERS; i++) {
         let slider_doc = document.getElementById("slider" + i);
@@ -84,7 +85,6 @@ function apiSlider() {
     var DISCOVER_BEGIN_URL = "&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=";
     var FETCHDETAILS1 = ["movie/top_rated", DISCOVER, DISCOVER, DISCOVER, DISCOVER, DISCOVER, DISCOVER ];
     var FETCHDETAILS2 = ["&page=1", DISCOVER_BEGIN_URL + "12", DISCOVER_BEGIN_URL + "27", DISCOVER_BEGIN_URL + "16", DISCOVER_BEGIN_URL + "35", DISCOVER_BEGIN_URL + "18", DISCOVER_BEGIN_URL + "53"]
-    var apikey = "000cfc8a44435ac1017a805bb5b2bbac";
 
     for (i = 0; i < FETCHDETAILS1.length; i++){
         apiGet(i);
@@ -92,7 +92,7 @@ function apiSlider() {
 
     //<---get json van API en geeft rang--->
     function apiGet(sliderNummer) {
-        fetch('https://api.themoviedb.org/3/' + FETCHDETAILS1[i] + '?api_key=' + apikey + '&language=en-US' + FETCHDETAILS2[i])
+        fetch('https://api.themoviedb.org/3/' + FETCHDETAILS1[i] + '?api_key=' + APIKEY + '&language=en-US' + FETCHDETAILS2[i])
             .then((response) => response.json())
             .then((json) => dataVerwerker(json, sliderNummer));
     }
@@ -114,22 +114,24 @@ function apiSlider() {
         }
     }
 
-    function sterrenToevoeger(sliderNummer, elementNumer){
-        const STERSVG = '<svg class="sterSvg" x="0px" y="0px" viewBox="0 0 172 172" ><g transform="translate(4.3,4.3) scale(0.95,0.95)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g id="original-icon 1" fill="#1F1F1F" stroke="#ff9a3c" stroke-width="9" stroke-linejoin="round"><path d="M35.088,167.184c-0.688,0 -1.376,-0.344 -2.064,-0.688c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-36.808c-1.376,-0.688 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l20.984,-54.696c0.688,-1.032 2.064,-2.064 3.44,-2.064c1.376,0 2.752,1.032 3.096,2.064l20.984,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.408,36.808l15.136,56.416c0.344,1.376 0,2.752 -1.376,3.784c-1.032,0.688 -2.752,1.032 -3.784,0l-49.192,-31.648l-49.192,31.648c-0.688,0.688 -1.032,0.688 -1.72,0.688z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g id="original-icon" fill="#ffbb3c" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M35.088,167.184c-0.688,0 -1.376,-0.344 -2.064,-0.688c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-36.808c-1.376,-0.688 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l20.984,-54.696c0.688,-1.032 2.064,-2.064 3.44,-2.064c1.376,0 2.752,1.032 3.096,2.064l20.984,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.408,36.808l15.136,56.416c0.344,1.376 0,2.752 -1.376,3.784c-1.032,0.688 -2.752,1.032 -3.784,0l-49.192,-31.648l-49.192,31.648c-0.688,0.688 -1.032,0.688 -1.72,0.688z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>';
-        const HALVESTERSVG = '<svg class="sterSvg" x="0px" y="0px" viewBox="0 0 172 172"><g transform="translate(4.73,4.73) scale(0.945,0.945)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g fill="#1F1F1F" stroke="#ff9a3c" stroke-width="10" stroke-linejoin="round"><path d="M136.912,167.184c-0.688,0 -1.376,-0.344 -1.72,-0.688l-49.192,-31.304l-49.192,31.648c-1.032,0.688 -2.752,0.688 -3.784,0c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-37.152c-1.376,-1.032 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l21.328,-54.696c0.344,-1.032 1.72,-2.064 3.096,-2.064c1.376,0 2.752,1.032 3.096,2.064l21.328,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.752,37.152l14.792,56.416c0.344,1.376 0,2.752 -1.376,3.784c-0.344,0 -1.032,0.344 -1.72,0.344zM86,127.624c0,0 1.376,0.344 1.72,0.688l43.344,27.864l-13.072,-49.88c-0.344,-1.376 0,-2.752 1.032,-3.44l40.248,-33.024l-51.6,-2.752c-1.376,0 -2.408,-1.032 -3.096,-2.064l-18.576,-48.504z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g fill="#ffbb3c" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M136.912,167.184c-0.688,0 -1.376,-0.344 -1.72,-0.688l-49.192,-31.304l-49.192,31.648c-1.032,0.688 -2.752,0.688 -3.784,0c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-37.152c-1.376,-1.032 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l21.328,-54.696c0.344,-1.032 1.72,-2.064 3.096,-2.064c1.376,0 2.752,1.032 3.096,2.064l21.328,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.752,37.152l14.792,56.416c0.344,1.376 0,2.752 -1.376,3.784c-0.344,0 -1.032,0.344 -1.72,0.344zM86,127.624c0,0 1.376,0.344 1.72,0.688l43.344,27.864l-13.072,-49.88c-0.344,-1.376 0,-2.752 1.032,-3.44l40.248,-33.024l-51.6,-2.752c-1.376,0 -2.408,-1.032 -3.096,-2.064l-18.576,-48.504z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>'
+}
 
-        let elementId = document.getElementById("score"+ sliderNummer +"."+ elementNumer);
-        let score = Math.round(rowSliderScore[sliderNummer][elementNumer]);
-        let starString = "";
+//<---sterren toeveoger--->
+function sterrenToevoeger(sliderNummer, elementNumer){
+    const STERSVG = '<svg class="sterSvg" x="0px" y="0px" viewBox="0 0 172 172" ><g transform="translate(4.3,4.3) scale(0.95,0.95)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g id="original-icon 1" fill="#1F1F1F" stroke="#ff9a3c" stroke-width="9" stroke-linejoin="round"><path d="M35.088,167.184c-0.688,0 -1.376,-0.344 -2.064,-0.688c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-36.808c-1.376,-0.688 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l20.984,-54.696c0.688,-1.032 2.064,-2.064 3.44,-2.064c1.376,0 2.752,1.032 3.096,2.064l20.984,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.408,36.808l15.136,56.416c0.344,1.376 0,2.752 -1.376,3.784c-1.032,0.688 -2.752,1.032 -3.784,0l-49.192,-31.648l-49.192,31.648c-0.688,0.688 -1.032,0.688 -1.72,0.688z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g id="original-icon" fill="#ffbb3c" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M35.088,167.184c-0.688,0 -1.376,-0.344 -2.064,-0.688c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-36.808c-1.376,-0.688 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l20.984,-54.696c0.688,-1.032 2.064,-2.064 3.44,-2.064c1.376,0 2.752,1.032 3.096,2.064l20.984,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.408,36.808l15.136,56.416c0.344,1.376 0,2.752 -1.376,3.784c-1.032,0.688 -2.752,1.032 -3.784,0l-49.192,-31.648l-49.192,31.648c-0.688,0.688 -1.032,0.688 -1.72,0.688z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>';
+    const HALVESTERSVG = '<svg class="sterSvg" x="0px" y="0px" viewBox="0 0 172 172"><g transform="translate(4.73,4.73) scale(0.945,0.945)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g fill="#1F1F1F" stroke="#ff9a3c" stroke-width="10" stroke-linejoin="round"><path d="M136.912,167.184c-0.688,0 -1.376,-0.344 -1.72,-0.688l-49.192,-31.304l-49.192,31.648c-1.032,0.688 -2.752,0.688 -3.784,0c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-37.152c-1.376,-1.032 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l21.328,-54.696c0.344,-1.032 1.72,-2.064 3.096,-2.064c1.376,0 2.752,1.032 3.096,2.064l21.328,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.752,37.152l14.792,56.416c0.344,1.376 0,2.752 -1.376,3.784c-0.344,0 -1.032,0.344 -1.72,0.344zM86,127.624c0,0 1.376,0.344 1.72,0.688l43.344,27.864l-13.072,-49.88c-0.344,-1.376 0,-2.752 1.032,-3.44l40.248,-33.024l-51.6,-2.752c-1.376,0 -2.408,-1.032 -3.096,-2.064l-18.576,-48.504z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g fill="#ffbb3c" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M136.912,167.184c-0.688,0 -1.376,-0.344 -1.72,-0.688l-49.192,-31.304l-49.192,31.648c-1.032,0.688 -2.752,0.688 -3.784,0c-1.032,-0.688 -1.72,-2.408 -1.376,-3.784l15.136,-56.416l-45.408,-37.152c-1.376,-1.032 -1.72,-2.408 -1.376,-3.784c0.344,-1.376 1.72,-2.408 3.096,-2.408l58.48,-3.096l21.328,-54.696c0.344,-1.032 1.72,-2.064 3.096,-2.064c1.376,0 2.752,1.032 3.096,2.064l21.328,54.696l58.48,3.096c1.376,0 2.752,1.032 3.096,2.408c0.344,1.376 0,2.752 -1.032,3.784l-45.752,37.152l14.792,56.416c0.344,1.376 0,2.752 -1.376,3.784c-0.344,0 -1.032,0.344 -1.72,0.344zM86,127.624c0,0 1.376,0.344 1.72,0.688l43.344,27.864l-13.072,-49.88c-0.344,-1.376 0,-2.752 1.032,-3.44l40.248,-33.024l-51.6,-2.752c-1.376,0 -2.408,-1.032 -3.096,-2.064l-18.576,-48.504z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>'
 
-        for (let x = 0; x < (Math.floor(score/2)); x++){
-            starString += STERSVG;
-        }
-        if (score % 2 !== 0){
-            starString += HALVESTERSVG;
-        }
-        elementId.innerHTML = starString;
+    let elementId = document.getElementById("score"+ sliderNummer +"."+ elementNumer);
+    let score = Math.round(rowSliderScore[sliderNummer][elementNumer]);
+    let starString = "";
+
+    for (let x = 0; x < (Math.floor(score/2)); x++){
+        starString += STERSVG;
     }
+    if (score % 2 !== 0){
+        starString += HALVESTERSVG;
+    }
+    elementId.innerHTML = starString;
 }
 
 //<---!rowSlider doorschuif logica!--->
@@ -157,10 +159,46 @@ function elementClick(rowId, elementId){
 }
 
 function bekekenFilms() {
+    //PHP string to js array
 	var bekekenFilms = document.getElementById('bekekenFilmId').innerHTML
-    if (bekekenFilms == "") {
-        return false
-    }
 	const bekekenFilmsArray = bekekenFilms.split(",");
-	console.log(bekekenFilmsArray)
+
+    //--- button hidder
+    bekekenFilmsArray.length < 6 ? document.getElementById("next7").style.display = "none" : "";
+
+    //--- lege element plaatser
+    const SLIDER_DOC = document.getElementById("slider7");
+    let htmlCode = "";
+    const SLIDERNUMMER = 7;
+    for (let x = 0; x < bekekenFilmsArray.length; x++){
+        let imgId = "img"+ SLIDERNUMMER +"."+ x;
+        let titleId = "title"+ SLIDERNUMMER +"."+ x;
+        htmlCode += `<li><img id=${imgId} src="http://placehold.it/200x300"/><p>
+                            <span id=${titleId}>Placeholder</span></p></li>`;
+    }
+    SLIDER_DOC.innerHTML = htmlCode;
+
+    //API fetch
+    for (let i = 0; i < bekekenFilmsArray.length; i++){
+        apiGet2(bekekenFilmsArray[i], i);
+    }
+
+    function apiGet2(filmId, elementNummer){
+        fetch('https://api.themoviedb.org/3/movie/' + filmId + '?api_key=' + APIKEY + '&language=en-US')
+            .then((response) => response.json())
+            .then((json) => dataVerwerker2(json, elementNummer));
+    }
+
+    //JSON to HTML
+    function dataVerwerker2 (json, elementNummer){
+        console.log("json = " + json);
+        let movieImgSrc = "https://image.tmdb.org/t/p/w200" + json.results.backdrop_path;
+        let movieTitle = json.results.title;
+        console.log("movie title = " + movieTitle);
+        console.log("movie img = " + movieImgSrc);
+
+        document.getElementById("img" + SLIDERNUMMER + "." + elementNummer).src = movieimgSrc;
+        document.getElementById("title" + SLIDERNUMMER + "." + elementNummer).innerHTML = movieTitle;
+    }
+
 }
