@@ -64,7 +64,7 @@ $username=$_SESSION['username'];
 				<p id="Runtime"></p>
 				<p id="Plot"></p>
 
-                <form method='post'><button type='submit' name='gekeken' value ='gekeken'>Voeg toe aan kijklijst</button ></form >
+                <form method='post'><button class="btn btn-outline-dark" type='submit' name='gekeken' value ='gekeken'>Voeg toe aan kijklijst</button ></form >
 
                 <?php
 
