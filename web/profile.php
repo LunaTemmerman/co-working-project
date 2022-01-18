@@ -3,7 +3,7 @@ session_start();
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'luna.temmerman');
-define('DB_PASSWORD', '@zerty!123');
+define('DB_PASSWORD', '@zerty123!');
 define('DB_NAME', 'coproject');
 
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
