@@ -48,7 +48,7 @@ $link->close();
     <?php
     include_once "header.php";
     ?>
-    <main class="padding-left">
+    <main class="marginLeft">
         <h1>Profiel</h1>
         <section>
             <p>Username: <?php echo $username ?></p>
