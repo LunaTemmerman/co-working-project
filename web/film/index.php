@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: ../login.php");
-    exit;
-}
-
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'luna.temmerman');
 define('DB_PASSWORD', '@zerty123!');
@@ -69,13 +64,11 @@ $username=$_SESSION['username'];
 				<p id="Runtime"></p>
 				<p id="Plot"></p>
 
+                <form method='post'><button type='submit' name='gekeken' value ='gekeken'>Voeg toe aan kijklijst</button ></form >
+
                 <?php
 
-                if (isset($_SESSION["id"])) {
-                    echo "<form method='post'><button type='submit' name='submit' value ='submit'>Voeg toe aan kijklijst</button ></form >";
-                }
-
-                if(isset($_POST['submit'])) {
+                if((isset($_POST['gekeken']))&&(isset($_SESSION["id"]))) {
                     $currentMovie_id = $_GET['id'];
 
                     $sql = "SELECT `movie_id` FROM `users` WHERE `username`='$username'";
@@ -106,9 +99,11 @@ $username=$_SESSION['username'];
                     }
 
                     mysqli_close($link);
-
                 }
 
+                if(((isset($_POST['gekeken']))&&(!isset($_SESSION["id"])))) {
+                    header("location: ../login.php");
+                }
                 ?>
 
             </div>

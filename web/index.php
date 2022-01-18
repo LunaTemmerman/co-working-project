@@ -18,77 +18,58 @@
 <Main class="home">
     <section>
         <h2>Populaire films</h2>
-
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev0" onclick="slider(true, 0)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider0">
-            </ul>
+            <ul class="rowSliderFlex" id="slider0"></ul>
             <div class="nextButton" id="next0" onclick="slider(false, 0)">&#10095;</div>
         </div>
     </section>
-
     <section>
         <h2>Top 20 beste avontuur films</h2>
 
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev1" onclick="slider(true, 1)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider1">
-            </ul>
+            <ul class="rowSliderFlex" id="slider1"></ul>
             <div class="nextButton" id="next1" onclick="slider(false, 1)">&#10095;</div>
         </div>
     </section>
-
     <section>
         <h2>Top 20 beste horror films</h2>
-
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev2" onclick="slider(true, 2)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider2">
-            </ul>
+            <ul class="rowSliderFlex" id="slider2"></ul>
             <div class="nextButton" id="next2" onclick="slider(false, 2)">&#10095;</div>
         </div>
     </section>
-
     <section>
         <h2>Top 20 beste animatie films</h2>
-
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev3" onclick="slider(true, 3)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider3">
-            </ul>
+            <ul class="rowSliderFlex" id="slider3"></ul>
             <div class="nextButton" id="next3" onclick="slider(false, 3)">&#10095;</div>
         </div>
     </section>
-
     <section>
         <h2>Top 20 beste komedie films</h2>
-
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev4" onclick="slider(true, 4)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider4">
-            </ul>
+            <ul class="rowSliderFlex" id="slider4"></ul>
             <div class="nextButton" id="next4" onclick="slider(false, 4)">&#10095;</div>
         </div>
     </section>
-
     <section>
         <h2>Top 20 beste drama films</h2>
-
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev5" onclick="slider(true, 5)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider5">
-            </ul>
+            <ul class="rowSliderFlex" id="slider5"></ul>
             <div class="nextButton" id="next5" onclick="slider(false, 5)">&#10095;</div>
         </div>
     </section>
-
     <section>
         <h2>Top 20 beste trillers</h2>
-
         <div class="rowSliderDiv">
             <div class="prevButton" id="prev6"  onclick="slider(true, 6)">&#10094;</div>
-            <ul class="rowSliderFlex" id="slider6">
-            </ul>
+            <ul class="rowSliderFlex" id="slider6"></ul>
             <div class="nextButton" id="next6" onclick="slider(false, 6)">&#10095;</div>
         </div>
     </section>

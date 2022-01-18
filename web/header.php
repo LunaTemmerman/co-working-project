@@ -3,7 +3,7 @@
     ?>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="./">
                 <img width="40" src="./img/logo.png" class="popcorn_logo" alt="logo">
@@ -30,8 +30,8 @@
                     ?>
                 </ul>
                 <form class="d-flex" action="javascript:searchBox('home')" method="post">
-                    <input class="form-control me-2" type="search" placeholder="Zoek naar een film" aria-label="Search" id="query">
-                    <button class="btn btn-outline-dark" type="submit">🔎︎</button>
+                    <input class="form-control me-2 bg-white" type="search" placeholder="Zoek naar een film" aria-label="Search" id="query">
+                    <button class="btn btn-outline-bordeaux" type="submit">🔎︎</button>
                 </form>
             </div>
         </div>

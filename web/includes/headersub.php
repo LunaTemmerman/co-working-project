@@ -3,11 +3,11 @@ session_start();
 ?>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="../">
                 <img width="40" src="../img/logo.png" alt="logo">
-                Film reviews</a>
+                Film Reviews</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,8 +18,7 @@ session_start();
                     </li>
                     <?php
                     if (isset($_SESSION["id"])) {
-                        echo "
-                                <li class='nav-item'><a class='nav-link' href='../profile.php'>Kijklijst</a> </li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='../profile.php'>Kijklijst</a> </li>";
                         echo "<li class='nav-item'><a class='nav-link' href='../includes/logout.inc.php'>Log out</a></li>";
                         echo "<li class='nav-item'><a class='nav-link' href='../includes/reset-password.inc.php'>Wachtwoord resetten</a></li>";
                     }
@@ -31,8 +30,8 @@ session_start();
                     ?>
                 </ul>
                 <form class="d-flex" action="javascript:searchBox('home')" method="post">
-                    <input class="form-control me-2" type="search" placeholder="Zoek naar een film" aria-label="Search" id="query">
-                    <button class="btn btn-outline-dark" type="submit">🔎︎</button>
+                    <input class="form-control me-2 bg-white" type="search" placeholder="Zoek naar een film" aria-label="Search" id="query">
+                    <button class="btn btn-outline-bordeaux" type="submit">🔎︎</button>
                 </form>
             </div>
         </div>
