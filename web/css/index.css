@@ -134,6 +134,14 @@ nav {
 	z-index: 0;
 }
 
+.profielSlider{
+	padding-left: 0;
+}
+
+.padding-left{
+	margin-left: 117px;
+}
+
 .buttonFlex {
 	display: flex;
 }

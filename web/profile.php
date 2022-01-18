@@ -48,7 +48,7 @@ $link->close();
     <?php
     include_once "header.php";
     ?>
-    <main class="container">
+    <main class="padding-left">
         <h1>Profiel</h1>
         <section>
             <p>Username: <?php echo $username ?></p>
@@ -59,11 +59,11 @@ $link->close();
         <section>
             <h2>Bekeken films</h2>
 
-            <div class="rowSliderDiv">
-                <div class="prevButton" id="prev7" onclick="slider(true, 0)">&#10094;</div>
+            <div class="rowSliderDiv profielSlider">
+                <div class="prevButton" id="prev7" onclick="slider(true, 7)">&#10094;</div>
                 <ul class="rowSliderFlex" id="slider7">
                 </ul>
-                <div class="nextButton" id="next7" onclick="slider(false, 0)">&#10095;</div>
+                <div class="nextButton" id="next7" onclick="slider(false, 7)">&#10095;</div>
             </div>
         </section>
     </main>

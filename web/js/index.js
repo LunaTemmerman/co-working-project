@@ -192,13 +192,12 @@ function bekekenFilms() {
     //JSON to HTML
     function dataVerwerker2 (json, elementNummer){
         console.log("json = " + json);
-        let movieImgSrc = "https://image.tmdb.org/t/p/w200" + json.results.backdrop_path;
-        let movieTitle = json.results.title;
+        let movieImgSrc = "https://image.tmdb.org/t/p/w200" + json.poster_path;
+        let movieTitle = json.title;
         console.log("movie title = " + movieTitle);
         console.log("movie img = " + movieImgSrc);
 
-        document.getElementById("img" + SLIDERNUMMER + "." + elementNummer).src = movieimgSrc;
+        document.getElementById("img" + SLIDERNUMMER + "." + elementNummer).src = movieImgSrc;
         document.getElementById("title" + SLIDERNUMMER + "." + elementNummer).innerHTML = movieTitle;
     }
-
 }
