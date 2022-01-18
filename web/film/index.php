@@ -69,10 +69,11 @@ $username=$_SESSION['username'];
 				<p id="Runtime"></p>
 				<p id="Plot"></p>
 
-                <form method="post">
-                    <button type="submit" name="submit" value="submit">Ik heb deze film gekeken!</button>
-                </form>
                 <?php
+
+                if (isset($_SESSION["id"])) {
+                    echo "<form method='post'><button type='submit' name='submit' value ='submit'>Voeg toe aan kijklijst</button ></form >";
+                }
 
                 if(isset($_POST['submit'])) {
                     $currentMovie_id = $_GET['id'];

@@ -18,13 +18,14 @@
                     </li>
                     <?php
                         if (isset($_SESSION["id"])) {
-                            echo "<li class='nav-item'><a class='nav-link' href='./profile.php'>Profiel pagina</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='./profile.php'>Kijklijst</a></li>";
                             echo "<li class='nav-item'><a class='nav-link' href='./includes/logout.inc.php'>Log out</a></li>";
                             echo "<li class='nav-item'><a class='nav-link' href='./includes/reset-password.inc.php'>Wachtwoord resetten</a></li>";
                         }
                         else {
                             echo "<li class='nav-item'><a class='nav-link' href='./login.php'>Login</a></li>";
                             echo "<li class='nav-item'><a class='nav-link' href='./signup.php'>Registreer</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='./login.php'>Kijklijst</a></li>";
                         }
                     ?>
                 </ul>
