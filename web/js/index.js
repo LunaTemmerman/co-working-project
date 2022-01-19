@@ -45,9 +45,7 @@ function populair() {
 
 function searchBox(page) {
     var query =  document.getElementById("query").value
-    let domain = (new URL(url));
-    domain = domain.hostname;
-    window.location.replace(domain + "/zoek/?querry=" + query)
+    window.location.replace(window.location.hostname + "/zoek/?querry=" + query)
 }
 
 //<---!rowslider arrays declaratie (inhoud)!--->
