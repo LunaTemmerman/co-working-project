@@ -74,8 +74,8 @@
         </div>
     </section>
 </Main>
+<?php
+    include_once './footer.php'
+?>
 </body>
-<footer>
-
-</footer>
 </html>

@@ -36,7 +36,7 @@ $username=$_SESSION['username'];
 			crossorigin="anonymous"
 		></script>
 		<link rel="stylesheet" href="../css/index.css" />
-		<title>Film</title>
+		<title>Film Review - Film Details</title>
 		<link rel="shortcut icon" href="../img/logo.png" type="image/png">
 	</head>
 	<body onload="loadMovie()">
@@ -108,6 +108,8 @@ $username=$_SESSION['username'];
 
             </div>
 		</main>
-		<footer></footer>
+        <?php
+        include_once '../footer.php'
+        ?>
 	</body>
 </html>

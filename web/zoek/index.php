@@ -18,15 +18,13 @@
         crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../css/index.css" />
-    <title>Home</title>
+    <title>Film Review - Search Results</title>
     <link rel="shortcut icon" href="../img/logo.png" type="image/png">
 </head>
 <body onload="loadSearch()">
-
 <?php
 include_once './headersub.php';
 ?>
-
 <main class="container mt-5">
     <h1>Zoek naar je favoriete film</h1>
     <section class="d-flex justify-content-center">
@@ -66,6 +64,8 @@ include_once './headersub.php';
         </div>
     </section>
 </main>
-<footer></footer>
+<?php
+include_once '../footer.php'
+?>
 </body>
 </html>
