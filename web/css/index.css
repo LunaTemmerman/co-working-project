@@ -26,27 +26,27 @@ nav {
 	background-color: rgba(33, 37, 41);
 	color: rgb(255,255,255);
 	padding: 5px;
-	border-radius: 18px;
+	border-radius: 10px;
 	margin-left: 5px;
 	margin-right: 5px;
 }
 
 .nav-link{
-	padding: 0;
+	padding: 0.2rem;
 }
 
 .nav-item:hover{
-	border-color: #801313;
+	border-color: #ffffff;
 	background-color: rgba(33, 37, 41);
 	color: white;
 }
 
 .btn-outline-bordeaux,.outline-bordeaux{
-	border: 2px solid #801313;
+	border: 2px solid #ffffff;
 	background-color: rgb(33, 37, 41);
 }
 .btn-outline-bordeaux:hover{
-	background-color: #801313;
+	background-color: #ffffff;
 }
 
 .
