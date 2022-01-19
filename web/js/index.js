@@ -45,7 +45,7 @@ function populair() {
 
 function searchBox(page) {
     var query =  document.getElementById("query").value
-    window.location.replace(window.location.hostname + "/zoek/?querry=" + query)
+    window.location.replace("/zoek/?querry=" + query)
 }
 
 //<---!rowslider arrays declaratie (inhoud)!--->
