@@ -170,7 +170,7 @@ function bekekenFilms() {
     const SLIDER_DOC = document.getElementById("slider7");
     let htmlCode = "";
     const SLIDERNUMMER = 7;
-    for (let x = 0; x < bekekenFilmsArray.length; x++){
+    for (let x = 0; x < bekekenFilmsArray.length -1 ; x++){
         let imgId = "img"+ SLIDERNUMMER +"."+ x;
         let titleId = "title"+ SLIDERNUMMER +"."+ x;
         htmlCode += `<li><img id=${imgId} src="http://placehold.it/200x300"/><p>
@@ -179,7 +179,7 @@ function bekekenFilms() {
     SLIDER_DOC.innerHTML = htmlCode;
 
     //API fetch
-    for (let i = 0; i < bekekenFilmsArray.length; i++){
+    for (let i = 0; i < bekekenFilmsArray.length - 1; i++){
         apiGet2(bekekenFilmsArray[i], i);
     }
 
@@ -200,4 +200,5 @@ function bekekenFilms() {
         document.getElementById("img" + SLIDERNUMMER + "." + elementNummer).src = movieImgSrc;
         document.getElementById("title" + SLIDERNUMMER + "." + elementNummer).innerHTML = movieTitle;
     }
+    document.getElementById('bekekenFilmId').innerHTML = ""
 }

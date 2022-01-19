@@ -31,7 +31,7 @@
                 </ul>
                 <form class="d-flex" action="javascript:searchBox('home')" method="post">
                     <input class="form-control me-2 bg-white" type="search" placeholder="Zoek naar een film" aria-label="Search" id="query">
-                    <button class="btn btn-outline-bordeaux" type="submit">🔎︎</button>
+                    <button class="btn btn-outline-light" type="submit">🔎︎</button>
                 </form>
             </div>
         </div>
