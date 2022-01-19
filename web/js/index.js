@@ -44,7 +44,12 @@ function populair() {
 }
 
 function searchBox(page) {
-    var query =  document.getElementById("query").value
+    if (page == "zoekIn") {
+        var query =  document.getElementById("zoekbalk").value        
+    }
+    else {
+        var query =  document.getElementById("query").value
+    }
     window.location.replace("/zoek/?querry=" + query)
 }
 
