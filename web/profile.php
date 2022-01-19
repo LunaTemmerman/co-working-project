@@ -53,7 +53,7 @@ $link->close();
             <p>Username: <?php echo $username ?></p>
             <p>ID: <?php echo $id ?></p>
             <p>Email: <?php echo $mail ?></p>
-            <p>Bekeken film ID's:</p><p id="bekekenFilmId"><?php echo $movie_id ?></p>
+            <p id="bekekenFilmId"><?php echo $movie_id ?></p>
         </section>
         <section>
             <h2>Bekeken films</h2>
