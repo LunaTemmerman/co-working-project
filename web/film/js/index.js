@@ -8,6 +8,10 @@ function loadMovie() {
 	fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + apikey)
 	.then((response) => response.json())
 	.then((json) => showMovieDetail(json));
+	
+	fetch('https://api.themoviedb.org/3/movie/' + id + '/videos' +'?api_key=' + apikey)
+	.then((response) => response.json())
+	.then((json) => display2(json));
 }
 function showMovieDetail(json) {
 	var genres = ""
@@ -24,4 +28,18 @@ function showMovieDetail(json) {
 	document.getElementById("Plot").innerHTML = json.overview
 	document.getElementById("Rating").innerHTML = "★ " + json.vote_average + "/10"
 	document.getElementById("Backdrop").src = "https://image.tmdb.org/t/p/original" + json.backdrop_path
+}
+function display2(json){
+	var key=""
+	var vidType=""
+	var Trailer = document.getElementById("Trailer");
+	
+	for (const results_nr in json.results) {
+		vidType = json.results[results_nr].type
+		if(vidType == "Trailer"){
+			key = json.results[results_nr].key
+			var URL = "https://www.youtube.com/embed/" + key ;
+			Trailer.src = URL;
+		}
+	}
 }
