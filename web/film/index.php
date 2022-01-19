@@ -63,6 +63,7 @@ $username=$_SESSION['username'];
 				<p id="Genre"></p>
 				<p id="Runtime"></p>
 				<p id="Plot"></p>
+				<iframe height="315" width="560" src="" id="Trailer" frameborder="0"></iframe>
 
                 <form method='post'><button class="btn btn-outline-dark" type='submit' name='gekeken' value ='gekeken'>Voeg toe aan kijklijst</button ></form >
 
