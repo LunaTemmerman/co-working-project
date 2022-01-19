@@ -102,7 +102,7 @@ include_once './headersub.php';
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Submit">
-                    <a class="btn btn-link ml-2" href="welcome.inc.php">Annuleren</a>
+                    <a class="btn btn-link ml-2 mb-3" href="welcome.inc.php">Annuleren</a>
                 </div>
             </form>
         </div>
