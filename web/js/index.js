@@ -45,12 +45,9 @@ function populair() {
 
 function searchBox(page) {
     var query =  document.getElementById("query").value
-    if (page == 'home') { 
-        window.location.replace("./zoek/?querry=" + query)
-    }
-    else { 
-        window.location.replace("../zoek/?querry=" + query)
-    }
+    let domain = (new URL(url));
+    domain = domain.hostname;
+    window.location.replace(domain + "/zoek/?querry=" + query)
 }
 
 //<---!rowslider arrays declaratie (inhoud)!--->
