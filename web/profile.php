@@ -1,34 +1,38 @@
 <?php
-session_start();
-
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'luna.temmerman');
-define('DB_PASSWORD', '@zerty123!');
-define('DB_NAME', 'coproject');
-
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if ($link === false) {
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-$username = $_SESSION['username'];
-$id = $_SESSION['id'];
-
-$sql = "SELECT `mail`, `movie_id` FROM `users` WHERE `username`='$username'";
-$result = mysqli_query($link, $sql);
-
-if(!$result) {
-    die('Kon data niet ophalen: ' . mysqli_error($link));
+if(!isset($_SESSION["id"])){
+    header("location: ../login.php");
 } else {
+    session_start();
+    
+    define('DB_SERVER', 'localhost');
+    define('DB_USERNAME', 'luna.temmerman');
+    define('DB_PASSWORD', '@zerty123!');
+    define('DB_NAME', 'coproject');
 
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $mail=$row['mail'];
-        $movie_id=$row['movie_id'];
+    $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+    if ($link === false) {
+        die("ERROR: Could not connect. " . mysqli_connect_error());
     }
-}
 
-$link->close();
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id'];
+
+    $sql = "SELECT `mail`, `movie_id` FROM `users` WHERE `username`='$username'";
+    $result = mysqli_query($link, $sql);
+
+    if (!$result) {
+        die('Kon data niet ophalen: ' . mysqli_error($link));
+    } else {
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $mail = $row['mail'];
+            $movie_id = $row['movie_id'];
+        }
+    }
+
+    $link->close();
+}
 ?>
 
 <html lang="nl">
